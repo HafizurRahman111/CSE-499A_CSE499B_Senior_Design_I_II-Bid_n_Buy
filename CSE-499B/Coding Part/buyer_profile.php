@@ -12,7 +12,7 @@
             
         }
         else{
-            header("location:http://localhost/a_test/buyer_login.php");
+            header("location:http://localhost/cse_499a/buyer_login.php");
         } 
 
  ?>
@@ -174,17 +174,17 @@
                     
                   <div class="w3-dropdown-hover">   
 
-                  <button class="w3-button w3-red" style="font-size:13px">
+                  <button class="w3-button w3-green" style="font-size:13px">
 
                  <i class="fa fa-user-o" style="font-size:20px"></i>
 
  <?php 
       
    
-         $conn = mysqli_connect("localhost","root","","a_test");
+         $conn = mysqli_connect("localhost","root","","cse_499a"); 
   
-         $sql = "SELECT * FROM buyer_signup";
-       
+        
+         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
  
            if($result = mysqli_query($conn,$sql))
         {
@@ -278,10 +278,9 @@
  <?php 
       
    
-         $conn = mysqli_connect("localhost","root","","a_test");
+       $conn = mysqli_connect("localhost","root","","cse_499a"); 
   
-         $sql = "SELECT * FROM buyer_signup";
-       
+         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
  
            if($result = mysqli_query($conn,$sql))
         {
@@ -315,10 +314,9 @@
 <?php 
       
    
-         $conn = mysqli_connect("localhost","root","","a_test");
+       $conn = mysqli_connect("localhost","root","","cse_499a"); 
   
-         $sql = "SELECT * FROM buyer_signup";
-       
+         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
  
            if($result = mysqli_query($conn,$sql))
         {
@@ -349,9 +347,9 @@
         
         
           include_once("connection.php");
+		  
          
-          $sql = "SELECT * FROM buyer_signup";
-       
+          $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
  
              if($result = mysqli_query($conn,$sql))
             {
@@ -415,7 +413,10 @@
 
      <?php   
         
-                 $sql = "SELECT * FROM buyer_signup";
+		 $conn = mysqli_connect("localhost","root","","cse_499a"); 
+		
+		
+                $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
        
                  if($result = mysqli_query($conn,$sql))
                {
@@ -446,6 +447,7 @@
            
          </div>
           </div>
+          
         </div>      
       </div>
       <br>
