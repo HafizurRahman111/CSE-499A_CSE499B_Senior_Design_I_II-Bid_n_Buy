@@ -2,10 +2,12 @@
 
 
 <?php
-ob_start(); 
+
+     ob_start(); 
      include_once("connection.php");
 
-    session_start();
+     session_start();
+
 ?>
 
 
@@ -110,6 +112,7 @@ ob_start();
 
                  
 				  <li>
+
                     <a href="#myModal" role="button" class="btn btn-large btn-primary" data-toggle="modal">Sign Up</a>
 
                     <!-- popup for login -->
@@ -261,8 +264,6 @@ ob_start();
                      
 					  
 					  
-					  
-					  
                   </div>
 				  
 				  
@@ -292,6 +293,7 @@ ob_start();
    
         
         if(isset($_POST['submit']))
+
 		{
             $user = $_POST['username'];
             $pass = $_POST['password'];
@@ -303,22 +305,26 @@ ob_start();
             $res = mysqli_query($conn,$sql);
             $count=mysqli_num_rows($res);
             
-            if($count == 1){
+             if($count == 1)
+            {
                 $_SESSION['user_name']=$user;
                
 			   
                 header("Location: http://localhost/cse_499a/buyer_profile.php"); 
+
+                  echo "<script>alert('Login Successful. Welcome');
+                    
+                  </script>";
+
+
             }
             
             else{
-               echo"<script>swal({
-                    title: 'Username or Password is Incorrect',
-                    text: 'Thank You',
-                    icon: 'error',
-                    timer: 3000,
-                    button: false,
 
-                });</script>";
+                  echo "<script>alert('Your Username or Password is Wrong. Please! Try Again');
+                    
+                  </script>";
+               
             }
             
         }
@@ -436,12 +442,6 @@ ob_start();
 
   <!-- Template Custom JavaScript File -->
   <script src="js/custom.js"></script>	
-		
-		
-		
-		
-		
-		
 		
 		
 		

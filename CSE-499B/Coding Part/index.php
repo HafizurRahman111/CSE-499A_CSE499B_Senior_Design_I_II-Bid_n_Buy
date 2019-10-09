@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +10,8 @@
   <title>Buy & Sell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Client-vendor platform" />
-  <meta name="Eshan" content="" />
+  <meta name="Himel" content="" />
+
 
   <!-- css -->
   <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -18,9 +23,13 @@
   <link href="css/jquery.bxslider.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
 
-  <!-- Theme skin -->
+
+ <!-- Theme skin -->
   <link href="color/default.css" rel="stylesheet" />
 
+
+
+  
   <!-- Fav and touch icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
@@ -28,9 +37,58 @@
   <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
   <link rel="shortcut icon" href="ico/favicon.png" />
 
+
+  <style>
+  
+
+
+.dropbtn {
+  background-color: white; 
+  color: black;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: green;}
+
+
+
+ </style>
+
+
+
 </head>
 
-<body>
+
+
+<!-- Header Start -->
+
 
   <div id="wrapper">
 
@@ -42,16 +100,17 @@
             <div class="span6">
               <p class="topcontact"><i class="icon-phone"></i> +880 1675695322</p>
             </div>
-            <div class="span6">
+       
+       <div class="span6">     
 
-              <ul class="social-network">
-                <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest  icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Google +"><i class="icon-google-plus icon-white"></i></a></li>
-                
-              </ul>
+       <ul class="social-network">
+        <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
+        <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
+        <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
+        <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest  icon-white"></i></a></li>
+               
+
+        </ul>
 
             </div>
           </div>
@@ -68,40 +127,116 @@
               <a href="index.php"><img src="img/logo.jpg" alt="" />Buy & Sell</a>
             </div>
           </div>
+
+
           <div class="span9">
             <div class="navbar navbar-static-top">
               <div class="navigation">
                 <nav>
                   <ul class="nav topnav">
-                    <li class="active">
-                      <a href="index.php">Home
-                      </a>
-                    </li>
-
-                    <li>
-                      <a href="buyProduct.php">Buy Products</a>
-                    </li>
-
-                    <li>
-                      <a href="sellProduct.php">Sell Products</a>
-                    </li>
-
-                    <li>
-                      <a href="contactUs.php">Contact Us</a>
-                    </li>
 
 
-                    <li>
+                    <li class="active"><a href="index.php">Home</a></li>
+
+                    <li><a href="buyProduct.php">Buy Products</a></li>
+
+                    <li><a href="sellProduct.php">Sell Products</a></li>
+
+                    <li><a href="contactUs.php">Contact Us</a></li>
+                      
+                                      <li>
                       <a href="aboutUs.php">About Us</a>
                     </li>
-
                    
 
+    <?php
+      
+
+       session_start();
+
+       if(isset($_SESSION['user_name']))
+
+      {
+
+           
+   ?>
+
+
+<!------------------------------------      After user login     ------------------------------------>
+
+                   
+               <div class="dropdown"> 
+
+
+               <button class="dropbtn">
+
+ <i class="pe-7s-user"></i>
+ <?php 
+      
+
+          $use = $_SESSION['user_name'];
+       
+
+         $conn = mysqli_connect("localhost","root","","cse_499a");
+  
+         $sql = "SELECT * FROM buyer_signup WHERE username='$use'";
+       
+ 
+           if($result = mysqli_query($conn,$sql))
+        {
+ 
+                while ($row = $result->fetch_assoc()) 
+               {
+                     $firstname = $row["firstname"];      
+                      
+                     echo '<tr> 
+                              <td>'.$firstname.'</td>                    
+                          </tr>';
+       
+                 }
+         
+           }
+   
+      
+ ?>
+
+  </button>
+
+   
+
+                   
+                     <div class="dropdown-content"> 
+
+                      <a href="buyer_profile.php">My Profile</a>
+                      <a href="#">My Products</a>
+                      <a href="#">My Bid</a>
+                      <a href="#">My Wishlist</a>
+                      <hr><a href="logout.php" class="w3-bar-item w3-button w-3-padding-10px">Logout</a></hr>
+                      
+                     </div>
+
+                   
+                   
+                   
+<?php
+
+
+ }
+
+  else
+ {
+     
+
+
+
+ ?>
+
+
                    <li>
-				   
+           
                     <a href="#myModal" role="button" class="btn btn-large btn-primary" data-toggle="modal">Sign Up</a>
 
-                    <!-- popup for login -->
+                    <!-- Popup for Signup -->
 
                     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 
@@ -136,16 +271,16 @@
 
 
                     </div>
-					
+          
                   </li>
-				  
-				  
-				
-				  
-			    <li>	  
-				 
-				  <!--Log In Pop Up--> 
-				  
+          
+          
+        
+          
+          <li>    
+         
+          <!--Log In Pop Up--> 
+          
                     <a class="btn btn-large btn-primary" role="button" href="#" data-target="#login" data-toggle="modal">Log In</a>
 
                        <div id="login" class="modal fade" role="dialog">
@@ -153,9 +288,9 @@
     
                              <div class="modal-content">
                                   <div class="modal-body">
-                                   							 
+                                                 
                                         <h4>Log In</h4>
-									  									  
+                                        
                                           <div class="modal-body" "flip-card back">
 
                                               <form action="index.php" method="post">
@@ -171,36 +306,50 @@
                                                  </select>​
 
                                                  <div class="modal-footer">
-																 								  
-				                                    <div class="form-group">
-													
-                                                      <input name="recover-close" class="btn btn-lg btn-primary pull-left" value="Forgot Password" type="#">
-													  
-													  <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-													  
-                                                    </div>														                                       										         
-													  
+                                                  
+                                            <div class="form-group">
+                          
+      <input name="recover-close" class="btn btn-lg btn-primary pull-left" value="Forgot Password" type="#">
+                            
+                            <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            
+                                                    </div>                                                                                               
+                            
                                                 </div>
  
                                               </form>
-											  
-                                           </div>									 				  
-									  
+                        
+                                           </div>                           
+                    
                                    </div>
-								  							   
+                                   
                               </div>
-							  
+                
                             </div>  
                         </div>
-						
-						
-			    </li>	  
-				  
-				  			 
+            
+            
+          </li> 
+
+
+          
+
+
+
+
+ <?php
+}
+
+?>
+
+
+
+          
+                 
                   </ul>
-				  
+          
                 </nav>
-				
+        
               </div>
               <!-- end navigation -->
             </div>
@@ -208,8 +357,11 @@
         </div>
       </div>
     </header>
-	
+  
     <!-- end header -->
+
+
+
 
     <!-- section featured -->
     <section id="featured">
@@ -521,6 +673,8 @@
 			   <li><a href="aboutUs.php">About Us</a></li>
 			   	<li><a href="contactUs.php">Contact Us</a></li>
                 <li><a href="#">Membership</a></li>
+			
+				 
 				 
                 <li><a href="#">Promote Your Add</a></li>
                 <li><a href="#">Terms and Conditions</a></li>

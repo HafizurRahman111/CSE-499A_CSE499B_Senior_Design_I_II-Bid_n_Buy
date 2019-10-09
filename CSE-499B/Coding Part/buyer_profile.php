@@ -205,17 +205,16 @@
 
            
       
- ?>
-
-</button>
+ ?></button>
 
 
                    <div class="w3-dropdown-content w3-bar-block w3-border">
 
-                      <a href="buyer_profile.php" class="w3-bar-item w3-button">My Profile</a>
+                      
                       <a href="#" class="w3-dropdown-click-green w3-bar-item w3-button">My Products</a>
                       <a href="#" class="w3-bar-item w3-button">My Bid</a>
                       <a href="#" class="w3-bar-item w3-button">My Wishlist</a>
+                      <a href="buyer_profile_edit.php" class="w3-bar-item w3-button">Edit Profile</a>
                       <hr><a href="logout.php" class="w3-bar-item w3-button w-3-padding-10px">Logout</a></hr>
 
                   </div>
