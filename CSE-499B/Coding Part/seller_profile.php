@@ -1,17 +1,37 @@
 
-<!DOCTYPE html>
 
+
+<!-- Profile session start after login -->
+
+<?php
+  
+        session_start();
+        $use = $_SESSION['user_name'];
+        if($use == true)
+       {
+            
+        }
+        else{
+            header("location:http://localhost/cse_499a/seller_login.php");
+        } 
+
+ ?>
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+
   <meta charset="utf-8">
   <title>Seller Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Client-vendor platform" />
-  <meta name="Eshan" content="" />
-  
- 
-  
+  <meta name="Himel" content="" />
+
+
   <!-- css -->
   <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet" />
@@ -21,11 +41,16 @@
   <link href="css/camera.css" rel="stylesheet" />
   <link href="css/jquery.bxslider.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
-  
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+  <!-- Profile Block and Others -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
   <!-- Theme skin -->
@@ -37,51 +62,80 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
   <link rel="shortcut icon" href="ico/favicon.png" />
+   
+
+
+   <!-- Real Time Show -->
+
+   <script type="text/javascript"> 
+
+      function display_c()
+     {
+       var refresh=1000; // Refresh rate in milli seconds
+       mytime=setTimeout('display_ct()',refresh)
+     }
+
+     function display_ct() 
+    {
+      var x = new Date()
+      document.getElementById('ct').innerHTML = x;
+      display_c();
+    }
+
+
+</script>
+
+
+
+
+
+
+  <style>
   
- 
+
+ h4{
+      color: white;
+      text-shadow:3px 3px 8px #000000;
+   }
+
+
+
+ </style>
+
+
+
+
+
+
 
 </head>
 
-<body>
+ <body>
+
+<!-- Header Start -->
 
 
-  <?php
-  
-  
-        session_start();
-        $use = $_SESSION['user_name'];
-        if($use == true)
-		   {
-            
-        }
-        else{
-            header("location:http://localhost/cse_499a/seller_login.php");
-        }   
-    ?>
+  <div id="wrapper">
 
-
-   <div id="wrapper">
-
-     <!-- start header -->
+    <!-- start header -->
     <header>
       <div class="top">
         <div class="container">
+
           <div class="row">
+
             <div class="span6">
               <p class="topcontact"><i class="icon-phone"></i> +880 1675695322</p>
             </div>
-            <div class="span6">
+            
 
-              <ul class="social-network">
-                <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest  icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Google +"><i class="icon-google-plus icon-white"></i></a></li>
-                
-              </ul>
+       <ul class="social-network">
+        <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
+        <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
+        <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
+        <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest  icon-white"></i></a></li>
+               
 
-            </div>
           </div>
         </div>
       </div>
@@ -91,37 +145,98 @@
 
 
         <div class="row nomargin">
+
           <div class="span3">
             <div class="logo" id="logo">
               <a href="index.php"><img src="img/logo.jpg" alt="" />Buy & Sell</a>
             </div>
           </div>
-          <div class="span9">
+
+
+          <div class="span6">
             <div class="navbar navbar-static-top">
               <div class="navigation">
                 <nav>
+
+                  <nav class="menu" role='navigation'>
+
                   <ul class="nav topnav">
+
+
+                    <li><a href="index.php">Home</a></li>
+
+                    <li><a href="buyProduct.php">Buy Products</a></li>
+
+                    <li><a href="contactUs.php">Contact Us</a></li>
+                      
+                    <li> <a href="aboutUs.php">About Us</a></li>
+                     
+                    
+                  <div class="w3-dropdown-hover">   
+
+                  <button class="w3-button w3-green" style="font-size:13px">
+
+                 <i class="fa fa-user-o" style="font-size:20px"></i>
+
+ <?php 
+      
+   
+         $conn = mysqli_connect("localhost","root","","cse_499a"); 
+  
+        
+         $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
+ 
+           if($result = mysqli_query($conn,$sql))
+        {
+ 
+                while ($row = $result->fetch_assoc()) 
+               {
+                     $firstname = $row["firstname"];      
+                      
+                     echo '<tr> 
+                              <td>'.$firstname.'</td>                    
+                          </tr>';
+       
+                 }
+         
+           }
+
+
+
+           
+      
+ ?></button>
+
+
+                   <div class="w3-dropdown-content w3-bar-block w3-border">
+
+                      
+                      <a href="#" class="w3-dropdown-click-green w3-bar-item w3-button">My Products</a>
+                      <a href="#" class="w3-bar-item w3-button">My Bid</a>
+                      <a href="#" class="w3-bar-item w3-button">My Wishlist</a>
+                      <a href="seller_profile_edit.php" class="w3-bar-item w3-button">Edit Profile</a>
+                      <hr><a href="logout.php" class="w3-bar-item w3-button w-3-padding-10px">Logout</a></hr>
+
+                  </div>
+                </div>
+             </div>
                     
 
-                    <li>
-                      <a href="##">Buy Products</a>
-                    </li>
+                      </div>
+                   </div>
 
-                   
-
-                    <li>
-                      <a href="##">News</a>  
-                    </li>
-
-                    <li class="active">
-                      <a href="##">My Account</a>
-                    </li>
-	
+                 </ul>
+        
+        
+              </ul>
+        
 
                   </ul>
                 </nav>
               </div>
               <!-- end navigation -->
+
+
             </div>
           </div>
         </div>
@@ -129,185 +244,213 @@
     </header>
     <!-- end header -->
 
+  
 
 <!-- Page Container -->
 
- <div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">    
+
+ <div class="w3-container w3-content" style="max-width:1450px;margin-top:30px">    
 
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
     <div class="w3-col m3">
-	
+  
       <!-- Profile -->
-	  
+    
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">Profile</h4>
-         <p class="w3-center"><img src="himel.jpg" class="w3-circle" style="height:300px;width:300px" alt="#"></p>
-		 
-		 
-		 <div>
+         <h4 class="w3-center bold text-shadow: 2px 2px #FF0000">My Profile</h4> 
+         <hr></hr>
+        
+         
 
-          
+         <p><i class="fa fa fa-star-o fa-fw w3-margin-right w3-large w3-text-teal"></i>
 
-		 <?php 
+     
+         <hr></hr>
+         <hr>
+
+         <p><i class="fa fa-user-circle fa-fw w3-margin-right w3-large w3-text-teal"></i>
+
+ <?php 
       
-	 
-	       $conn = mysqli_connect("localhost","root","","cse_499a");
+   
+       $conn = mysqli_connect("localhost","root","","cse_499a"); 
   
-
-            $sql = "SELECT * FROM seller_signup";
-		   
+         $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
  
            if($result = mysqli_query($conn,$sql))
-		  {
+        {
  
                    while ($row = $result->fetch_assoc()) 
-	             {
+               {
                        $firstname = $row["firstname"];      
                        $lastname = $row["lastname"];
 
-			 
-					      echo '<tr> 
-                              <td>'.$firstname.'</td> 
-                               <td>'.$lastname.'</td> 
+       
+                     echo '<tr> 
+
+                              <td>'.$firstname.'</td>                    
+                              <td>'.$lastname.'</td> 
                   
                           </tr>';
-					 
-			
-					 
        
                  }
-				
-                                     /*freeresultset*/
-                 $result->free();
-				 
-				 
+        
+         
            }
-			
-           
-   
-	
-  
+      
 ?>
-	
-	
 
-</div>
+     <hr>
+     
 
-         <hr>
-		 
-		  
-		 
-        <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Student</p>
-        <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i> Bashundhara,Dhaka</p>
-        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i> 15 January,1998</p>
-		 
-		 
-		  <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>
-		 
-		 
-		  <?php   
-			  
-			  
-			       include_once("connection.php");
-				 
-                    $sql = "SELECT * FROM seller_signup";
-		   
+
+         <p><i class="fa fa fa-user fa-fw w3-margin-right w3-large w3-text-teal"></i>
  
-                 if($result = mysqli_query($conn,$sql))
-		        {
+<?php 
+      
+   
+       $conn = mysqli_connect("localhost","root","","cse_499a"); 
+  
+         $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
  
-		              while ($row = $result->fetch_assoc()) 
-	               {
-                       $email = $row["email"];      
-                      
-							
-					      echo '<tr> 
-                               
-                               <td>'.$email.'</td> 
+           if($result = mysqli_query($conn,$sql))
+        {
+ 
+                   while ($row = $result->fetch_assoc()) 
+               {
+                       $username = $row["username"];      
+       
+                     echo '<tr> 
+
+                              <td>'.$username.'</td>                                         
                   
                           </tr>';
-						  
-						  
        
-                  }
-					
+                 }
+        
+         
+           }
+      
+?>
 
-		       }
-			
-					      
-                             
-		?>	
-		 
-		 
-		 </p>
-		 
-		 
-		 <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>+880 14848848</p>
+   </p>
+
+
+<!-- Email -->
+
+<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>   </p>
+
+
+
+<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>
+
+
+  <?php 
+      
+   
+       $conn = mysqli_connect("localhost","root","","cse_499a"); 
+  
+         $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
+ 
+           if($result = mysqli_query($conn,$sql))
+        {
+ 
+                   while ($row = $result->fetch_assoc()) 
+               {
+                       $phone = $row["phone"];      
+       
+                     echo '<tr> 
+
+                              <td>'.$phone.'</td>                                         
+                  
+                          </tr>';
+       
+                 }
+        
+         
+           }
+      
+?>
+
+
+
+
+</p>
+
+
+
+         
+
+
         </div>
       </div>
       <br>
       
       <!-- Accordion -->
+
       <div class="w3-card w3-round">
+
         <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-hover-white"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> More Info</button>
+
+          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-hover-white"><i class="fa fa-info-circle fa-fw w3-margin-right"></i> More Info</button>
           <div id="Demo1" class="w3-hide w3-container">
-            <p>Registration Date :  <?php   
-			  
-                 $sql = "SELECT * FROM seller_signup";
-		   
+
+
+         <hr>
+
+         <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>----</p>
+
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>-----</p>
+
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>-----</p>
+
+         <p><i class="fa fa-language fa-fw w3-margin-right w3-large w3-text-teal"></i>Language :</p>
+     
+         
+        
+
+         <p><i class="fa fa fa-registered fa-fw w3-margin-right w3-large w3-text-teal"></i>Registration Date : 
+
+     <?php   
+        
+		 $conn = mysqli_connect("localhost","root","","cse_499a"); 
+		
+		
+                $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
+       
                  if($result = mysqli_query($conn,$sql))
-		        {
-		             while ($row = $result->fetch_assoc()) 
-	                {
+               {
+                   while ($row = $result->fetch_assoc()) 
+                  {
                        $reg_time = $row["reg_time"];   
 
                        echo substr(".$reg_time",1,11);
-                      	
-
-							  
-						  
+              
                     }
-			
-		       }
-			   
-		?>	</p>
-          </div>
-		  
+      
+           }
          
-		 
+    ?>  
 
-		 
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-hover-white"><i class="fa fa-user fa-fw w3-margin-right"></i>Edit Profile</button>
+  </p>
+
+          </div>
+      
+    
+     
+   <button onclick="window.location.href='seller_profile_edit.php';" class="w3-button w3-block w3-theme-l1 w3-left-align w3-hover-white">
+    <i class="fa fa-edit fa-fw w3-margin-right"></i>Edit Profile</button>
           <div id="Demo2" class="w3-hide w3-container">
-         <div class="w3-row-padding">
-		 
-		 
-		   
-         <br>
-           <div class="w3-half">
-             <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-           </div>
-           <div class="w3-half">
-             <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-           </div>
+          <div class="w3-row-padding">
+    
+         
+           
          </div>
           </div>
+          
         </div>      
       </div>
       <br>
@@ -318,94 +461,135 @@
      
     
     <!-- End Left Column -->
+
+
     </div>
+
     
     <!-- Middle Column -->
-    <div class="w3-col m7">
+
+   
+
+             
+      
+<div class="w3-col m7">
     
       <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Post Here</h6>
-              <p contenteditable="true" class="w3-border w3-padding">Description: I want to sell 50 Tables </p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+            <div class="w3-container w3-padding w3-cyan w3-opacity-min">
+              <h6 class="w3-opacity">Post Your Demand Here</h6>
+
+              <br>
+              <h3 style="color:white" ;><b>Product Information :</b></h3>
+             
+              <form class="w3-container w3-card-4 w3-light-grey">
+
+              <br>
+              
+              <input class="w3-input w3-border" name="first" type="text" placeholder="Enter Your Name"></p>
+              
+             
+              <input class="w3-input w3-border" email="mail" type="text" placeholder="Enter Your Email"></p>
+
+              
+              <input class="w3-input w3-border" mobile="phone" type="text" placeholder="Enter Your Mobile Number"></p>
+
+              
+               <p><label>Product Category</label></p>
+
+                 <select class="form-control" name="type">
+                    <option value="1" selected>Cars/Bikes</option>
+                    <option value="2">Electronics</option>
+                    <option value="3">Furnitures</option>
+                    <option value="4">Real estate</option>
+                    
+                  </select>
+
+
+                  <p><label>Buying Catagory </label></p>
+
+                  <select class="form-control" name="type">
+                    <option value="1" selected>Regular</option>
+                    <option value="2">Bid</option>
+                  </select>
+                 
+                 <br></br>
+
+                 <input class="w3-input w3-border" product="product" type="text" placeholder="Product Name"></p>
+
+                  <input class="w3-input w3-border" price="price" type="text" placeholder="Enter Your Price"></p>
+
+                  <input class="w3-input w3-border" quantity="quantity" type="text" placeholder="Quantity"></p>
+                  
+                  <input type="file" name="photo" accept="image/*"> 
+
+                  <br></br>
+                  
+                 <textarea class="w3-input w3-border" name="message" type="text" placeholder="Product Details"></textarea>
+
+
+              <br></br>
+              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Post</button> 
+              <br></br>
+
+             </form>
+
+
             </div>
           </div>
         </div>
-      </div>
-      
-      
-      
-     
 
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="##" class="w3-left w3-circle w3-margin-right" style="width:60px">   <!-- sample photo-->
-        <span class="w3-right w3-opacity">..... min</span>
-        
-        
-        <p>This is Hafizur Want to Sell 20 Chairs</p>
-        
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-      </div> 
-      
+
+      </div>
+
+
+
     <!-- End Middle Column -->
     </div>
-    
+
+
+  
     <!-- Right Column -->
-	
-	
-	 <div class="w3-dropdown-hover w3-hide-small">
-     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+  
+  
+   <div class="w3-dropdown-hover w3-hide-small">
+     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">1</span></button>  
+
+     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:250px">
       <a href="#" class="w3-bar-item w3-button">#</a>
       <a href="#" class="w3-bar-item w3-button">##</a>
-      <a href="#" class="w3-bar-item w3-button">###</a>
-    </div>
-	
-
-                               
-	
-    </div>
-	
-	               
-				                 <a href="logout_s.php" class="w3-bar-item w3-button">Log Out</a>
-		
-	
-	
-	
-    <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Null</p>
-          <img src="null" alt="Null" style="width:100%;">
-          <p><strong>null</strong></p>
-          <p>null</p>
-          <p><button class="w3-button w3-block w3-theme-l4">null</button></p>
-        </div>
-      </div>
-      <br>
-	  
-	  
-    
-      <br>
       
-	  
-	   <div class="w3-card w3-round w3-white w3-center">
-         
+    </div>
+                    
+                    
+  
+    </div>
+  
+  
+    <div class="w3-col m2">
+      <div class="w3-card w3-round w3-white w3-center" style="width:260px">
         <div class="w3-container">
-          <p>Null</p>
-          <img src="null" alt="Null" style="width:100%;">
-          <p><strong>null</strong></p>
-          <p>null</p>
-          <p><button class="w3-button w3-block w3-theme-l4">null</button></p>
+
+         <hr>
+          <p><strong>Today</strong></p>
+         
+
+          <body onload=display_ct();>
+              <span id='ct' ></span>
+           </body>
+
+           <hr>
         </div>
       </div>
+      <br>
+  
+  
       </div>
      
       <br>
       
-    
+
       
     <!-- End Right Column -->
     </div>
@@ -419,20 +603,31 @@
 
 
 
-    <footer>
+
+<div>
+<hr>
+</div>
+
+
+
+<!-- Footer Start -->
+
+
+
+   <footer>
       <div class="container">
         <div class="row">
           <div class="span4">
-            <div class="widget">
+      
+      
+           <div class="widget">
               <h5 class="widgetheading">Learn More</h5>
               <ul class="link-list">
-			  
-			   <li><a href="aboutUs.php">About Us</a></li>
-			   	<li><a href="contactUs.php">Contact Us</a></li>
+        
+             <li><a href="aboutUs.php">About Us</a></li>
+               <li><a href="contactUs.php">Contact Us</a></li>
                 <li><a href="#">Membership</a></li>
-			
-				 
-				 
+      
                 <li><a href="#">Promote Your Add</a></li>
                 <li><a href="#">Terms and Conditions</a></li>
                  
@@ -440,26 +635,26 @@
               </ul>
 
             </div>
+      
+      
           </div>
+
 
           <div class="span4">
             <div class="widget">
               <h5 class="widgetheading">Get in touch</h5>
               <address>
-							<strong>Buy & Sell</strong><br>
-							Bashundhara Residential Area<br>
-							Dhaka, Bangladesh
-						</address>
+              <strong>Buy & Sell</strong><br>
+              Bashundhara Residential Area<br>
+              Dhaka, Bangladesh
+            </address>
               <p>
                 <i class="icon-phone"></i> +880 1675695322 <br>
                 <i class="icon-envelope-alt"></i> buynsell@gmail.com
               </p>
             </div>
           </div>
-		  
-         
-		  
-		  
+
         </div>
       </div>
 
@@ -488,7 +683,7 @@
 
 
 
-  <!-- javascript
+ <!-- javascript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="js/jquery.js"></script>
@@ -531,18 +726,6 @@ function myFunction(id) {
   <!-- Template Custom JavaScript File -->
   <script src="js/custom.js"></script>
   
-  
-  
+    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

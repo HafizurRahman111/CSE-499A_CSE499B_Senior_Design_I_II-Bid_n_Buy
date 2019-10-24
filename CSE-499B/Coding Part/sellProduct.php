@@ -435,68 +435,6 @@
           </div>
         </div>
       </div>
-
-
-      <!--contact-->
-        <div id="sell" class="span8">
-          <div class="row">
-            <div class="col-md-12">
-              <br>
-              <br>
-              <hr>
-              <h2 class="ser-title">Give your <br><i> Product's description</i> </br> here.</h2>
-              <hr class="botm-line">
-            </div>
-            <div class="col-md-4 col-sm-4">
-              <h3>Product Info</h3>
-
-                <form action="" method="post" role="form" class="contactForm">
-
-                  <div class="form-group">
-                    <input type="text" name="name" class="form-control br-radius-zero" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                    <div class="validation"></div>
-                  </div>
-
-                  <div class="form-group">
-                    <input type="email" class="form-control br-radius-zero" name="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                    <div class="validation"></div>
-                  </div>
-
-                  <div class="form-group">
-                  <label for="Type">Choose product Catagory </label>
-                  <select class="form-control" name="type">
-                    <option value="1" selected>Electronics</option>
-                    <option value="2">Real estate</option>
-                    <option value="3">Life Style</option>
-                    <option value="4">Cars/Bikes</option>
-                    <option value="5">Food & Nutrition</option>
-                  </select>
-                  </div>
-
-                  <div class="form-group">
-                    <input type="number" class="form-control br-radius-zero" name="price" placeholder="Price" data-rule="number" data-msg="Please enter a valid email" />
-                    <div class="validation"></div>
-                  </div>
-
-                  <div class="from-group">
-                      <img src="" id="image" style="display:none;" height="150" width="100">
-                      <label>Upload Product Photos</label><br>
-                      <input name="img" type="file" />
-                  </div>
-                  <br>
-
-                  <div class="form-group">
-                    <textarea class="form-control br-radius-zero" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Product Details"></textarea>
-                    <div class="validation"></div>
-                  </div>
-
-                  <div class="form-action">
-                    <button type="submit" class="btn btn-form">Sell Product</button>
-                  </div>
-
-                </form>
-              </div>
-            </div>
           </div>
         </div>
     </section>

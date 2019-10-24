@@ -150,11 +150,6 @@
 						
 			    </li>	  
 				  
-				  
-				  
-				  
-				  
-				  
 
                   </ul>
                 </nav>
@@ -167,20 +162,17 @@
     </header>
     <!-- end header -->
 
-    <!--contact-->
-    <section id="contact" class="section-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2 class="ser-title">Contact us</h2>
-            <hr class="botm-line">
-          </div>
+    <div class="card text-center">
+  <div class="card-header">
+    Contact us
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Having Any Query! Feel free to write us.</h5>
+   
 
-          <div class="col-md-8 col-sm-8 marb20">
+    <div class="col-md-8 col-sm-8 marb20">
             <div class="contact-info">
-              <h3 class="cnt-ttl">Having Any Query! Feel free to write us.</h3>
               <div class="space"></div>
-              <div id="sendmessage">Your message has been sent. Thank you!</div>
               <div id="errormessage"></div>
               <form action="" method="post" role="form" class="contactForm">
                 <div class="form-group">
@@ -206,13 +198,10 @@
               </form>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-
-
-
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
 
         <footer>
           <div class="container">

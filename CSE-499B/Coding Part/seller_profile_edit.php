@@ -14,7 +14,7 @@
             
         }
         else{
-            header("location:http://localhost/cse_499a/buyer_login.php");
+            header("location:http://localhost/cse_499a/seller_login.php");
         } 
 
  ?>
@@ -32,7 +32,7 @@
 
 
   <meta charset="utf-8">
-  <title>Edit Buyer Profile</title>
+  <title>Edit Seller Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Client-vendor platform" />
   <meta name="Himel" content="" />
@@ -253,9 +253,9 @@
 
                     <li><a href="index.php">Home</a></li>
 
-                    <li><a href="buyProduct.php">Buy Products</a></li>
+                    <li><a href="sellProduct.php">Sell Products</a></li>
 
-                    <li><a href="contactUs.php">Contact Us</a></li>
+                    <li><a href="contactUs.php">Contact Us</a></li> 
                       
                     <li> <a href="aboutUs.php">About Us</a></li>
                      
@@ -275,7 +275,7 @@
    
          $conn = mysqli_connect("localhost","root","","cse_499a");
   
-          $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
+          $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
           
  
            if($result = mysqli_query($conn,$sql))
@@ -301,12 +301,12 @@
 
              <div class="w3-dropdown-content w3-border">
 
-               <a href="buyer_profile.php" class="w3-bar-item w3-button">My Profile</a></li>
+               <a href="seller_profile.php" class="w3-bar-item w3-button">My Profile</a></li>
                <a href="#" class="w3-bar-item w3-button">My Products</a>
                <a href="#" class="w3-bar-item w3-button">My Bid</a>
                <a href="#" class="w3-bar-item w3-button">My Wishlist</a>
 
-          <hr><a href="logout.php" class="w3-bar-item w3-button w-3-padding-10px">Logout</a></hr><br>
+          <hr><a href="logout_s.php" class="w3-bar-item w3-button w-3-padding-10px">Logout</a></hr><br>
 
 
 
@@ -381,7 +381,7 @@
    
          $conn = mysqli_connect("localhost","root","","cse_499a");
   
-          $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
+          $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
  
            if($result = mysqli_query($conn,$sql))
         {
@@ -417,7 +417,7 @@
       
          $conn = mysqli_connect("localhost","root","","cse_499a");
   
-         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
+         $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
  
            if($result = mysqli_query($conn,$sql))
         {
@@ -458,7 +458,7 @@
    
        $conn = mysqli_connect("localhost","root","","cse_499a"); 
   
-         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
+         $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
  
            if($result = mysqli_query($conn,$sql))
         {
@@ -534,7 +534,7 @@
 
                $conn = mysqli_connect("localhost","root","","cse_499a");
         
-                 $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
+                 $sql = "SELECT * FROM seller_signup WHERE username='$use'"; 
        
                  if($result = mysqli_query($conn,$sql))
                {
@@ -590,7 +590,7 @@
 
 <!---------------------------------   Input Form ( Change Password )  ---------------------------->
 
-      <form method="post" action="buyer_profile_edit.php" >
+      <form method="post" action="seller_profile_edit.php" >
 
         <table>
 
@@ -663,7 +663,7 @@
      }
      else
     {
-      header("location:http://localhost/cse_499a/buyer_login.php");
+      header("location:http://localhost/cse_499a/seller_login.php");
     }
 
 
@@ -676,7 +676,7 @@
     $confirmnewpassword=$_POST['confirmnewpassword'];
     
    
-    $sql = "SELECT password FROM buyer_signup WHERE username='$use'"; 
+    $sql = "SELECT password FROM seller_signup WHERE username='$use'"; 
        
     $result = mysqli_query($conn,$sql) ;
 
@@ -691,7 +691,7 @@
              if($newpassword == $confirmnewpassword)
             {
 
-              $up ="UPDATE buyer_signup SET password='$confirmnewpassword' WHERE username='$use'";
+              $up ="UPDATE seller_signup SET password='$confirmnewpassword' WHERE username='$use'";
 
               $upda = mysqli_query($conn, $up) ;
 
@@ -699,27 +699,27 @@
                if($upda)
               {
                   echo "<script>alert('Password Update Sucessfully'); 
-                  window.location='buyer_login.php'</script>"; 
+                  window.location='seller_login.php'</script>"; 
 
                   session_destroy();
 
               }
               else{
                     echo "<script>alert('Your New and Confirm Password is not match.Try Again'); 
-                    window.location='buyer_profile_edit.php'</script>";
+                    window.location='seller_profile_edit.php'</script>";
                  }
               
             }
 
               echo "<script>alert('Your New and Confirm Password is not match'); 
-                 window.location='buyer_profile_edit.php'</script>";
+                 window.location='seller_profile_edit.php'</script>";
 
               
            }
            else {
 
                    echo "<script>alert('Your Old Password is Wrong');  
-                   window.location='buyer_profile_edit.php'</script>";
+                   window.location='seller_profile_edit.php'</script>";
               }
 
     }
@@ -755,7 +755,7 @@
               <h3 class="w3-opacity"><i class="fa fa fa-pencil"></i> Edit Your Profile</h3>
               <br>
              
-              <form method="post" action="buyer_profile_edit.php" class="w3-container w3-card-4 w3-light-grey">
+              <form method="post" action="seller_profile_edit.php" class="w3-container w3-card-4 w3-light-grey">
               <br>
 
               
@@ -772,27 +772,15 @@
 
              <input type="text" class="form-control" placeholder="Phone Number" name="phone">
 
-             <input type="text" class="form-control" placeholder="Works" name="works">
-
-             <input type="text" class="form-control" placeholder="Current Addtress" name="current_address">
-
-             <input type="text" class="form-control" placeholder="Parmanent Address" name="parmanent_address">
-
-             <input type="date" class="form-control" placeholder="Birthday" name="birthday">
-
-
-             <input type="text" class="form-control" placeholder="Languages" name="language"> 
-
-             <input type="text" class="form-control" placeholder="E-mail" name="email">
-             
-
              <hr>
 
              
              </div>
               
              
-          <button type="submit" name="save" class="w3-button w3-green"><i class="fa fa fa-save"></i> Save</button>
+          
+          
+            <button type="submit" name="save" class="w3-button w3-green"><i class="fa fa fa-save"></i> Save</button>
            <br></br>
 
 
@@ -802,11 +790,21 @@
 
 
 
-    
+      
+
+
 
             </div>
           </div>
         </div>
+
+
+
+
+  
+
+
+
 
 
 
@@ -835,29 +833,22 @@
 
     
    
-    $up ="UPDATE buyer_signup SET firstname='$_POST[first_name]',lastname='$_POST[last_name]',phone='$_POST[phone]' WHERE username='$use'";
+    $up ="UPDATE seller_signup SET firstname='$_POST[first_name]',lastname='$_POST[last_name]',phone='$_POST[phone]' WHERE username='$use'";
 
     $upda = mysqli_query($conn, $up) ;
 
 
 
-    $up1 ="UPDATE buyer_profile SET works='$_POST[works]',current_address='$_POST[current_address]',parmanent_address='$_POST[parmanent_address]',birthday='$_POST[birthday]',language='$_POST[language]',email='$_POST[email]' WHERE username='$use'"; 
-
-    $upda1 = mysqli_query($conn, $up1) ;
-
-
-
-          
 
                if($upda)
               {
                   echo "<script>alert('Information Update Sucessfully'); 
-                  window.location='buyer_profile.php'</script>";
+                  window.location='seller_profile.php'</script>";
 
               }
               else{
                     echo "<script>alert('Eror .Try Again'); 
-                    window.location='buyer_profile_edit.php'</script>";
+                    window.location='seller_profile_edit.php'</script>";
                  }
               
           

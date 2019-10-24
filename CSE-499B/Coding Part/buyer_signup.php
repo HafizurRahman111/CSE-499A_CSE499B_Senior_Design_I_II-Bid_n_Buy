@@ -276,7 +276,8 @@
 
      <!-- Registration Form -->
 
-
+<section id="buyersignup"> 
+  
 	  <div class="c11 container">
         <div class="row">
 
@@ -305,49 +306,22 @@
                <div class="form-group">
                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username" name="uname">
                </div>
+ 
                <div class="form-group">
-                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" name="email">
+                   <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Phone Number" name="phone">
                </div>
+
                <div class="form-group">
                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
                </div>
-               <div class="from-group">
-                   <img src="" id="image" style="display:none;" height="150" width="100">
-                   <label>Upload Your Image</label><br>
-                   <input name="img" onchange="showImage.call(this)" type="file" />
-               </div><br>
+               
+
+
+               <br>
                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 
 				</form>
 
-           </div>
-
-
-           </div>
-
-         </div>
-
-
-
-         <script type="text/javascript">          <!--Show the uploaded image-->
-
-            function showImage()
-          {
-              if(this.files && this.files[0])
-             {
-                var obj = new FileReader();
-                obj.onload = function(data)
-               {
-                   var image = document.getElementById("image");
-                   image.src = data.target.result;
-                   image.style.display = "block";
-               }
-
-                 obj.readAsDataURL(this.files[0]);
-              }
-           }
-
-       </script>
 
          <!--PHP Code Started for Client Registration -->
 
@@ -357,30 +331,25 @@
           include_once("connection.php");
 
            if(isset($_POST['submit']))
-  		{
+      {
 
           $fname = $_POST['fname'];
           $lname = $_POST['lname'];
           $uname = $_POST['uname'];
-          $email = $_POST['email'];
+          $phone = $_POST['phone'];
           $pass = $_POST['pass'];
 
-          $filename = addslashes($_FILES['img']['name']);
-          $tmpname = addslashes(file_get_contents($_FILES['img']['tmp_name']));
-          $filetype = addslashes($_FILES['img']['type']);
-          $filesize = addslashes($_FILES['img']['size']);
-          $array = array('jpg','jpeg');
-          $ext = pathinfo($filename, PATHINFO_EXTENSION);
-
+         
           $reg_time = date("Y-m-d H:i:s");
 
-          $sql = "INSERT INTO buyer_signup(firstname,lastname,username,email,password,name,image,reg_time)
-                  VALUES('$fname','$lname','$uname','$email','$pass','$filename','$tmpname','$reg_time')";
+          $sql = "INSERT INTO buyer_signup(firstname,lastname,username,phone,password,reg_time)
+                  VALUES('$fname','$lname','$uname','$phone','$pass','$reg_time')";
 
 
 
-                 if(empty($fname) || empty($lname) || empty($uname) || empty($pass) || empty($email) || empty($filename) || !in_array($ext, $array))
-  			       	{
+
+                 if(empty($fname) || empty($lname) || empty($uname) || empty($pass) || empty($phone) )
+                {
 
                   echo"<script>swal({
                       title: 'Complete all the fields',
@@ -414,6 +383,16 @@
                       timer: 4000,
                       button: false,
                       });</script>";
+
+
+
+                        $for_buyer_profile = "INSERT INTO buyer_profile(b_id,username) VALUES('','$uname')";
+
+
+                        $r = mysqli_query($conn,$for_buyer_profile);
+
+
+
                   }
                 }
         ?>
@@ -421,7 +400,19 @@
 
 
 
+           </div>
 
+
+           </div>
+
+
+         </div>
+
+
+ </div>
+         </section>
+
+        
 
 
       <footer>                                      <!-- Footer part start-->
@@ -493,6 +484,7 @@
 
       </footer>
 </div>                              <!-- Footer part end-->
+
 
 
 <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>

@@ -359,7 +359,7 @@
         <div class="w3-container">
          <h4 class="w3-center bold text-shadow: 2px 2px #FF0000">My Profile</h4> 
          <hr></hr>
-        
+         <p class="w3-center"><img src="himel.jpg" class="w3-circle" style="height:200px;width:200px" alt="#"></p>
 
          
 
@@ -444,45 +444,40 @@
 
 <!------------------------- Show Email Using PHP ------------------------------------->
 
-   <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>   </p>
+<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>
+     
 
+    <?php   
+        
+          $conn = mysqli_connect("localhost","root","","cse_499a");
+         
+          $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
+       
+ 
+             if($result = mysqli_query($conn,$sql))
+            {
+ 
+                  while ($row = $result->fetch_assoc()) 
+                 {
+                       $email = $row["email"];      
+                      
+                       echo '<tr>                          
+                               <td>'.$email.'</td> 
+                          </tr>';
+       
+                  }
+          
+           }      
+                             
+    ?>  
+     
+     
+    </p>
 
 
     <!------------------------- Show Phone Number Using PHP ------------------------------------->
 
-     <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>
-
-
-    <?php 
-      
-   
-       $conn = mysqli_connect("localhost","root","","cse_499a"); 
-  
-         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
- 
-           if($result = mysqli_query($conn,$sql))
-        {
- 
-                   while ($row = $result->fetch_assoc()) 
-               {
-                       $phone = $row["phone"];      
-       
-                     echo '<tr> 
-
-                              <td>'.$phone.'</td>                                         
-                  
-                          </tr>';
-       
-                 }
-        
-         
-           }
-      
-?>
-
-
-
-     </p>
+     <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>------</p>
 
 
 
@@ -519,7 +514,8 @@
 
          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>-----</p>
 
-       
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>-----</p>
+
          <p><i class="fa fa-language fa-fw w3-margin-right w3-large w3-text-teal"></i>Language :</p>
      
          
@@ -755,44 +751,45 @@
               <h3 class="w3-opacity"><i class="fa fa fa-pencil"></i> Edit Your Profile</h3>
               <br>
              
-              <form method="post" action="buyer_profile_edit.php" class="w3-container w3-card-4 w3-light-grey">
+              <form class="w3-container w3-card-4 w3-light-grey">
               <br>
 
-              
+              <form method="post" enctype="multipart/form-data">
               <div class="text">
 
               </div>
           
              <div class="form-group mx-sm-3 mb-2">
-
         
-             <input type="text" class="form-control" placeholder="First Name" name="first_name">
-
-             <input type="text" class="form-control" placeholder="Last Name" name="last_name">
-
-             <input type="text" class="form-control" placeholder="Phone Number" name="phone">
-
-             <input type="text" class="form-control" placeholder="Works" name="works">
-
-             <input type="text" class="form-control" placeholder="Current Addtress" name="current_address">
-
-             <input type="text" class="form-control" placeholder="Parmanent Address" name="parmanent_address">
-
-             <input type="date" class="form-control" placeholder="Birthday" name="birthday">
-
-
-             <input type="text" class="form-control" placeholder="Languages" name="language"> 
-
-             <input type="text" class="form-control" placeholder="E-mail" name="email">
-             
-
-             <hr>
-
+             <input type="text" class="form-control" id="exampleInputName" placeholder="First Name" name="fname">
+             <input type="text" class="form-control" id="exampleInputName1" placeholder="Last Name" name="lname">
+             <input type="text" class="form-control" id="exampleMobile" placeholder="Mobile Number" name="mobile">
              
              </div>
               
              
-          <button type="submit" name="save" class="w3-button w3-green"><i class="fa fa fa-save"></i> Save</button>
+             <div class="form-group">
+
+             <input type="text" class="form-control" id="exampleWorks" placeholder="Works" name="works">    
+             <input type="text" class="form-control" id="examplelanguages" placeholder="Languages" name="languages">
+             <textarea class="w3-input w3-border" name="address" type="text" placeholder="Address"></textarea>
+
+            </div>
+
+          <hr>
+
+           
+           <br>
+           <div class="from-group">  
+              <img src="" id="image" style="display:none;" height="150" width="100">
+                <label>Upload Your Image</label><br>
+                  <input name="img" onchange="showImage.call(this)" type="file" />
+               </div>
+
+           <br>
+
+           <br></br>
+            <button type="save" name="save" class="w3-button w3-green"><i class="fa fa fa-save"></i> Save</button>
            <br></br>
 
 
@@ -800,74 +797,96 @@
           </form>
 
 
-
-
-    
-
             </div>
           </div>
         </div>
-
-
 
       </div>
 
 
 
+
+     <!-- PHP CODE -->
+
+
+     <?php
     
 
-    <!-------------------------------------     End of Middle Column          ------------------------------->
-                    </div>
+    $conn = mysqli_connect("localhost","root","","cse_499a"); 
 
-<?php
-    
+    $use = $_SESSION['user_name'];
 
-    $conn = mysqli_connect("localhost","root","","cse_499a");
-
-
-     $use = $_SESSION['user_name'];
      
+      if($use)
+     {
+
+     }
+     else
+    {
+      header("location:http://localhost/cse_499a/buyer_login.php");
+    }
+
 
    
    if(isset($_POST['save']))
   {              
+   
     
+    $fname=$_POST['fname']; 
+    $lname=$_POST['lname'];
+    $mobile=$_POST['mobile'];
+    $works=$_POST['works'];
+    $languages=$_POST['languages'];
+    $address=$_POST['address']; 
 
     
    
-    $up ="UPDATE buyer_signup SET firstname='$_POST[first_name]',lastname='$_POST[last_name]',phone='$_POST[phone]' WHERE username='$use'";
-
-    $upda = mysqli_query($conn, $up) ;
-
-
-
-    $up1 ="UPDATE buyer_profile SET works='$_POST[works]',current_address='$_POST[current_address]',parmanent_address='$_POST[parmanent_address]',birthday='$_POST[birthday]',language='$_POST[language]',email='$_POST[email]' WHERE username='$use'"; 
-
-    $upda1 = mysqli_query($conn, $up1) ;
+    $sql = "SELECT * FROM buyer_profile WHERE username='$use'"; 
+       
+    $result = mysqli_query($conn,$sql) ;
 
 
 
-          
+     while ($row = mysqli_fetch_array($result)) 
+    {
+       
+           $use = $row['username'] ;
+    
+   $update_buyer_profile ="UPDATE buyer_profile SET 'phone'='$mobile','works'='$works','language'='$languages','current_address'='$address' WHERE username='$use'";
 
-               if($upda)
+              $upda_buyer_profile = mysqli_query($conn, $update_buyer_profile) ;
+
+
+               if($upda_buyer_profile)
               {
-                  echo "<script>alert('Information Update Sucessfully'); 
-                  window.location='buyer_profile.php'</script>";
+                  echo "<script>alert('Information Updated Sucessfully'); 
+                  window.location='buyer_login.php'</script>"; 
+
+                  session_destroy();
 
               }
               else{
-                    echo "<script>alert('Eror .Try Again'); 
+                    echo "<script>alert('Error Occured.Try Again'); 
                     window.location='buyer_profile_edit.php'</script>";
                  }
               
-          
+           
 
-    
+    }
 
-  }
+}
+  
 
 
 ?>
+
+
+
+
+
+
+    <!-------------------------------------     End of Middle Column          ------------------------------->
+                    </div>
 
     
     <!----------------------------------- End Grid ------------------------------>

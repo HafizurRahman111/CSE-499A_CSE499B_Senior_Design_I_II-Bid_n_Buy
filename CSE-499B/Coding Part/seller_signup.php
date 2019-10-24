@@ -255,6 +255,7 @@
 
      <!-- Registration Form -->
 
+<section id="sellersignup"> 
 
 	  <div class="c11 container">
         <div class="row">
@@ -288,7 +289,7 @@
                </div>
 
                <div class="form-group">
-                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email" name="email">
+                   <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Phone Number" name="phone">
                </div>
 
                <div class="form-group">
@@ -296,48 +297,14 @@
                </div>
 
 
-               <div class="form-group">
-                   <input type="text" class="form-control" id="exampleInputAddress" placeholder="Address" name="addre">
-               </div>
+              
 
-
-               <div class="from-group">
-                   <img src="" id="image" style="display:none;" height="150" width="100">
-                   <label>Upload Your Image</label><br>
-                   <input name="img" onchange="showImage.call(this)" type="file" />
-               </div><br>
+               <br>
                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 
 				</form>
 
-           </div>
 
-
-           </div>
-
-         </div>
-
-
-
-         <script type="text/javascript">          <!--Show the uploaded image-->
-
-            function showImage()
-          {
-              if(this.files && this.files[0])
-             {
-                var obj = new FileReader();
-                obj.onload = function(data)
-               {
-                   var image = document.getElementById("image");
-                   image.src = data.target.result;
-                   image.style.display = "block";
-               }
-
-                 obj.readAsDataURL(this.files[0]);
-              }
-           }
-
-       </script>
 
          <!--PHP Code Started for Client Registration -->
 
@@ -346,33 +313,27 @@
           include_once("connection.php");
 
            if(isset($_POST['submit']))
-  	  	{
+        {
 
           $fname = $_POST['fname'];
           $lname = $_POST['lname'];
           $uname = $_POST['uname'];
-          $email = $_POST['email'];
+          $phone = $_POST['phone'];
           $pass =  $_POST['pass'];
-          $addre =  $_POST['addre'];
+          
 
 
-          $filename = addslashes($_FILES['img']['name']);
-          $tmpname = addslashes(file_get_contents($_FILES['img']['tmp_name']));
-          $filetype = addslashes($_FILES['img']['type']);
-          $filesize = addslashes($_FILES['img']['size']);
-          $array = array('jpg','jpeg');
-          $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
           $reg_time = date("Y-m-d H:i:s");
 
 
-          $sql = "INSERT INTO seller_signup(firstname,lastname,username,email,password,address,name,image,reg_time)
-                  VALUES('$fname','$lname','$uname','$email','$pass','$addre','$filename','$tmpname','$reg_time')";
+          $sql = "INSERT INTO seller_signup(firstname,lastname,username,phone,password,reg_time)
+                  VALUES('$fname','$lname','$uname','$phone','$pass','$reg_time')";
 
 
 
-                 if(empty($fname) || empty($lname) || empty($uname) || empty($email) || empty($pass) || empty($addre)  || empty($filename) || !in_array($ext, $array))
-  			       	{
+                 if(empty($fname) || empty($lname) || empty($uname) || empty($phone) || empty($pass) )
+                {
 
                   echo"<script>swal({
                       title: 'Complete all the fields',
@@ -411,6 +372,21 @@
                 }
         ?>
 
+
+           </div>
+
+
+           </div>
+
+         </div>
+
+</section>
+
+         
+
+
+
+        
 
 
 

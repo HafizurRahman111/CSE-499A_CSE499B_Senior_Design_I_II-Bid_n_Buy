@@ -262,8 +262,7 @@
         <div class="w3-container">
          <h4 class="w3-center bold text-shadow: 2px 2px #FF0000">My Profile</h4> 
          <hr></hr>
-         <p class="w3-center"><img src="himel.jpg" class="w3-circle" style="height:200px;width:200px" alt="#"></p>
-
+        
          
 
          <p><i class="fa fa fa-star-o fa-fw w3-margin-right w3-large w3-text-teal"></i>
@@ -340,41 +339,46 @@
    </p>
 
 
-<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>
-     
-      <?php   
-        
-        
-          include_once("connection.php");
-		  
-         
-          $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
+<!-- Email -->
+
+<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>   </p>
+
+
+
+<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>
+
+
+  <?php 
+      
+   
+       $conn = mysqli_connect("localhost","root","","cse_499a"); 
+  
+         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
  
-             if($result = mysqli_query($conn,$sql))
-            {
+           if($result = mysqli_query($conn,$sql))
+        {
  
-                  while ($row = $result->fetch_assoc()) 
-                 {
-                       $email = $row["email"];      
-                      
-              
-                      echo '<tr>                          
-                               <td>'.$email.'</td> 
+                   while ($row = $result->fetch_assoc()) 
+               {
+                       $phone = $row["phone"];      
+       
+                     echo '<tr> 
+
+                              <td>'.$phone.'</td>                                         
+                  
                           </tr>';
        
-                  }
-          
+                 }
+        
+         
            }
-                
-                             
-    ?>  
-     
-     
-    </p>
+      
+?>
 
 
 
-     <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>------</p>
+
+</p>
 
 
 
