@@ -1,3 +1,17 @@
+
+<?php
+  
+        session_start();
+        $use = $_SESSION['user_name'];
+        if($use == true)
+       {
+            
+        }
+        else{
+            header("location:http://localhost/cse_499a/buyer_login.php");
+        } 
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -298,11 +312,48 @@
               <img src="img/works/protine.png" alt="Avatar" style="width:300px;height:200px;">
             </div>
             <div class="flip-card-back">
-              <h1>Denim Jeans</h1>
-              <p>Price: 800 BDT</p>
-              <p>Quantity: 200 pcs</p>
-              <p>Special Remarks: details</p>
-              <p><button class="btn btn-warning">BID</button></p>
+
+<!-- PHP -->
+<?php 
+      
+   
+       $conn = mysqli_connect("localhost","root","","cse_499a"); 
+   
+  $use = $_SESSION['user_name'];
+  
+
+
+   $sql = "SELECT * FROM buy_products_demand WHERE buyer_username='$use'";
+   
+   if ($result = mysqli_query($conn,$sql))
+   {
+
+
+           while ($row = mysqli_fetch_row($result)) 
+               {
+                     
+
+                
+                     echo "<h1>$row[7]</h1>";
+               
+                     echo "<p>$row[8]</p>";
+
+                   echo "<p>$row[9]</p>" ; 
+                    echo "<p>$row[11]</p>" ;
+                   echo "<p><button class='btn btn-warning'>BID</button></p>" ;
+
+
+               }
+   
+
+
+      }        
+       
+      
+?>
+
+
+<!-- PHP -->
 
             </div>
           </div>

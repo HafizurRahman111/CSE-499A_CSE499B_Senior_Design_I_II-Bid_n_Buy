@@ -483,57 +483,68 @@
               <br>
               <h3 style="color:white" ;><b>Product Information :</b></h3>
              
-              <form class="w3-container w3-card-4 w3-light-grey">
-
+              <form method="post" action="buyer_profile.php" class="w3-container w3-card-4 w3-light-grey">
               <br>
               
-              <input class="w3-input w3-border" name="first" type="text" placeholder="Enter Your Name"></p>
+
+
+              <input type="text" class="form-control" placeholder="Enter Your Name" name="first">
+
+              <input type="text" class="form-control" placeholder="Enter Your Email" name="email">
               
+              <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="phone">
+
              
-              <input class="w3-input w3-border" email="mail" type="text" placeholder="Enter Your Email"></p>
+              <p><label>Product Category</label></p>
 
-              
-              <input class="w3-input w3-border" mobile="phone" type="text" placeholder="Enter Your Mobile Number"></p>
-
-              
-               <p><label>Product Category</label></p>
-
-                 <select class="form-control" name="type">
-                    <option value="1" selected>Cars/Bikes</option>
-                    <option value="2">Electronics</option>
-                    <option value="3">Furnitures</option>
-                    <option value="4">Real estate</option>
+                 <select class="form-control" name="product_cat">
+                    <option value="Cars" selected>Cars</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Furnitures">Furnitures</option>
+                    <option value="Real estate">Real estate</option>
                     
                   </select>
+             
+            <br></br>
 
+               <p><label>Buying Catagory </label></p>
 
-                  <p><label>Buying Catagory </label></p>
-
-                  <select class="form-control" name="type">
-                    <option value="1" selected>Regular</option>
-                    <option value="2">Bid</option>
+                  <select class="form-control" name="buyer_typ">
+                    <option value="Regular" selected>Regular</option>
+                    <option value="Bid">Bid</option>
                   </select>
-                 
-                 <br></br>
 
-                 <input class="w3-input w3-border" product="product" type="text" placeholder="Product Name"></p>
+            
 
-                  <input class="w3-input w3-border" price="price" type="text" placeholder="Enter Your Price"></p>
+            <br></br>
 
-                  <input class="w3-input w3-border" quantity="quantity" type="text" placeholder="Quantity"></p>
+
+              <input type="text" class="form-control" placeholder="Product Name" name="product">
+
+              <input type="text" class="form-control" placeholder="Enter Your Price" name="price">
+
+              <input type="text" class="form-control" placeholder="Enter Your Quantity" name="quantity">   
                   
-                  <input type="file" name="photo" accept="image/*"> 
+            <br></br>
 
-                  <br></br>
+              <input type="file" name="photo" accept="image/*"> 
+
+            <br></br>
                   
-                 <textarea class="w3-input w3-border" name="message" type="text" placeholder="Product Details"></textarea>
+              <textarea class="w3-input w3-border" name="product_details" type="text" placeholder="Product Details"></textarea>
 
+              
+               
+             <hr>
 
-              <br></br>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Post</button> 
+             
+               <br></br>
+              
+              <button type="submit" name="done" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Post</button> 
               <br></br>
 
              </form>
+            </form>
 
 
             </div>
@@ -542,6 +553,70 @@
 
 
       </div>
+
+
+
+<!--         ---->
+
+
+
+<?php
+    
+
+    $conn = mysqli_connect("localhost","root","","cse_499a");
+
+
+     $use = $_SESSION['user_name'];
+     
+
+   
+   if(isset($_POST['done']))
+  {              
+    
+         
+          $first = $_POST['first'];
+          $email = $_POST['email'];
+          $phone = $_POST['phone'];
+          $product_cat = $_POST['product_cat'];
+          $buyer_typ = $_POST['buyer_typ'];
+
+          $product = $_POST['product'];
+          $price = $_POST['price'];
+          $quantity = $_POST['quantity'];
+          $product_details = $_POST['product_details'];
+
+
+    $buyer_pro ="INSERT INTO buy_products_demand (buyer_username,buyer_name,buyer_email,buyer_phone,buyer_category,buyer_type,product_name,estimated_price,quantity,product_details)  VALUES ('$use','$first','$email','$phone','$product_cat','$buyer_typ','$product','$price',' $quantity','$product_details')";
+   
+     
+
+    $up_buyer_pro = mysqli_query($conn, $buyer_pro) ;
+
+
+               if($up_buyer_pro)
+              {
+                  echo "<script>alert('Information Update Sucessfully'); 
+                  window.location='buyProduct.php'</script>";
+
+              }
+              else{
+                    echo "<script>alert('Eror .Try Again'); 
+                    window.location='buyer_profile.php'</script>";
+                 }
+              
+          
+
+    
+
+  }
+
+
+?>
+
+
+
+
+
 
 
 
