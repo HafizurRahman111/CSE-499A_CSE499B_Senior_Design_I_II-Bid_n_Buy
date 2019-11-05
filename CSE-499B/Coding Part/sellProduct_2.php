@@ -291,7 +291,7 @@
    $conn = mysqli_connect("localhost","root","","cse_499a"); 
    
   
-   $sql = "SELECT * FROM buy_products_demand ORDER BY b_product_id DESC LIMIT 0,10";
+   $sql = "SELECT * FROM buy_products_demand ORDER BY b_product_id DESC LIMIT 21,30";
    
    if ($result = mysqli_query($conn,$sql))
    {
@@ -302,14 +302,12 @@
           
                  
 
-
-
                      echo "<div class='span4'>
                         <div class='item'>
                       <div class='flip-card'>
                         <div class='flip-card-inner' size='width:100px,height:150px'>
                          <div class='flip-card-front' >
-                           <img src='images/icons/3.jpg'/".$row['filename']."' alt='Avatar'style='width:150px;height:200px;''>
+                           <img src='images/icons/3.jpg'/".$row['image']."' alt='Avatar'style='width:150px;height:200px;''>
                               </div>
 
                               <div class='flip-card-back'>
@@ -355,10 +353,12 @@
 
             <div id="pagination">
               <span class="all">Page 1 of 3</span>
-              <span class="current">1</span>
              
+             
+              <a href="sellProduct.php" class="inactive">1</a>
               <a href="sellProduct_1.php" class="inactive">2</a>
-              <a href="sellProduct_2.php" class="inactive">3</a>
+              <span class="current">3</span>
+
             </div>
           </div>
         </div>
