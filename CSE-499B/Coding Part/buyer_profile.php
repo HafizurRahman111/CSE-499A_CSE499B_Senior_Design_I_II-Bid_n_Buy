@@ -1,7 +1,7 @@
 
 
 
-<!-- Profile session start after login -->
+ <!-- Profile session start after login -->
 
 <?php
   
@@ -33,6 +33,7 @@
 
 
   <!-- css -->
+
   <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet" />
   <link href="css/bootstrap-responsive.css" rel="stylesheet" />
@@ -46,14 +47,15 @@
 
 
   <!-- Profile Block and Others -->
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-
   <!-- Theme skin -->
+
   <link href="color/default.css" rel="stylesheet" />
 
   <!-- Fav and touch icons -->
@@ -86,10 +88,6 @@
 </script>
 
 
-
-
-
-
   <style>
   
 
@@ -106,18 +104,17 @@
 
 
 
-
-
 </head>
 
  <body>
 
-<!-- Header Start -->
+   
 
 
   <div id="wrapper">
 
-    <!-- start header -->
+    <!------------------     Header Start  ------------------->
+
     <header>
       <div class="top">
         <div class="container">
@@ -130,6 +127,7 @@
             
 
        <ul class="social-network">
+
         <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
         <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
         <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
@@ -178,6 +176,7 @@
 
                  <i class="fa fa-user-o" style="font-size:20px"></i>
 
+
  <?php 
       
    
@@ -211,7 +210,7 @@
                    <div class="w3-dropdown-content w3-bar-block w3-border">
 
                       
-                      <a href="#" class="w3-dropdown-click-green w3-bar-item w3-button">My Products</a>
+                      <a href="buyer_own_post.php" class="w3-dropdown-click-green w3-bar-item w3-button">My Products</a>
                       <a href="#" class="w3-bar-item w3-button">My Bid</a>
                       <a href="#" class="w3-bar-item w3-button">My Wishlist</a>
                       <a href="buyer_profile_edit.php" class="w3-bar-item w3-button">Edit Profile</a>
@@ -234,7 +233,8 @@
                   </ul>
                 </nav>
               </div>
-              <!-- end navigation -->
+
+              <!-------------------     End Navigation    ----------------->
 
 
             </div>
@@ -242,11 +242,12 @@
         </div>
       </div>
     </header>
-    <!-- end header -->
+
+    <!-------------------------  End Header  ------------------------>
 
   
 
-<!-- Page Container -->
+   <!---------------- Page Container ------------------>
 
 
  <div class="w3-container w3-content" style="max-width:1450px;margin-top:30px">    
@@ -264,7 +265,6 @@
          <hr></hr>
         
          
-
          <p><i class="fa fa fa-star-o fa-fw w3-margin-right w3-large w3-text-teal"></i>
 
      
@@ -272,6 +272,7 @@
          <hr>
 
          <p><i class="fa fa-user-circle fa-fw w3-margin-right w3-large w3-text-teal"></i>
+
 
  <?php 
       
@@ -339,7 +340,7 @@
    </p>
 
 
-<!-- Email -->
+   <!------------------ Email ------------------>
 
 <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>   </p>
 
@@ -382,14 +383,13 @@
 
 
 
-         
 
 
         </div>
       </div>
       <br>
       
-      <!-- Accordion -->
+      <!------------------ Accordion ---------------->
 
       <div class="w3-card w3-round">
 
@@ -460,18 +460,199 @@
       
      
     
-    <!-- End Left Column -->
+    <!-------------- End Left Column ------------->
 
 
     </div>
 
-    
-    <!-- Middle Column -->
+  
+ 
+  <?php
+  ini_set( "display_errors", 0);
+  ?>
 
+
+
+
+<?php
+
+include 'config.php' ;
+include_once("connection.php");
+
+$use = $_SESSION['user_name'];
+
+
+ $conn = mysqli_connect("localhost","root","","cse_499a");
+
+$productSaved = FALSE;
+
+if (isset($_POST['done'])) 
+{
+    
+    $buyerName = isset($_POST['buyer_name']) ? $_POST['buyer_name'] : '';
+
+    $buyerEmail = isset($_POST['buyer_email']) ? $_POST['buyer_email'] : '';
+    
+    $buyerPhone = isset($_POST['buyer_phone']) ? $_POST['buyer_phone'] : '';
    
 
-             
+    $pro_cat = isset($_POST['buyer_category']) ? $_POST['buyer_category'] : '';
+
+
+    $buyerType = isset($_POST['buyer_type']) ? $_POST['buyer_type'] : '';
+
+
+    $proName = isset($_POST['product_name']) ? $_POST['product_name'] : '';
+
+
+    $bPrice = isset($_POST['estimated_price']) ? $_POST['estimated_price'] : '';
+
+    $bQuantity = isset($_POST['quantity']) ? $_POST['quantity'] : '';
+
+
+    $pDetails = isset($_POST['product_details']) ? $_POST['product_details'] : '';
+
+
+   
+    if (empty($buyerName)) 
+    {
+        $errors[] = 'Please Enter Your Name';
+    }
+
+     if (empty($buyerEmail)) 
+    {
+        $errors[] = 'Please Enter Your Email';
+    }
+
+     if (empty($buyerPhone)) 
+    {
+        $errors[] = 'Please Enter Your Phone Number';
+    }
+   
+
+    if (empty($pro_cat)) 
+    {
+        $errors[] = 'Please Choose a Category';
+    }
+   
+   if (empty($buyerType)) 
+    {
+        $errors[] = 'Please Choose Your Type';
+    }
+
+
+
+      if (!is_dir(UPLOAD_DIR)) 
+    {
+        mkdir(UPLOAD_DIR, 0777, true);
+    }
+
+    
+    $filenamesToSave = [];
+
+    $allowedMimeTypes = explode(',', UPLOAD_ALLOWED_MIME_TYPES);
+
+    
+    if (!empty($_FILES)) {
+        if (isset($_FILES['file']['error'])) {
+            foreach ($_FILES['file']['error'] as $uploadedFileKey => $uploadedFileError) {
+                if ($uploadedFileError === UPLOAD_ERR_NO_FILE) {
+                    $errors[] = 'You did not provide any files.';
+                } elseif ($uploadedFileError === UPLOAD_ERR_OK) {
+                    $uploadedFileName = basename($_FILES['file']['name'][$uploadedFileKey]);
+
+                    if ($_FILES['file']['size'][$uploadedFileKey] <= UPLOAD_MAX_FILE_SIZE) {
+                        $uploadedFileType = $_FILES['file']['type'][$uploadedFileKey];
+                        $uploadedFileTempName = $_FILES['file']['tmp_name'][$uploadedFileKey];
+
+                        $uploadedFilePath = rtrim(UPLOAD_DIR, '/') . '/' . $uploadedFileName;
+
+                        if (in_array($uploadedFileType, $allowedMimeTypes)) {
+                            if (!move_uploaded_file($uploadedFileTempName, $uploadedFilePath)) {
+                                $errors[] = 'The file "' . $uploadedFileName . '" could not be uploaded.';
+                            } else {
+                                $filenamesToSave[] = $uploadedFilePath;
+                            }
+                        } else {
+                            $errors[] = 'The extension of the file "' . $uploadedFileName . '" is not valid. Allowed extensions: JPG, JPEG, PNG, or GIF.';
+                        }
+                    } else {
+                        $errors[] = 'The size of the file "' . $uploadedFileName . '" must be of max. ' . (UPLOAD_MAX_FILE_SIZE / 1024) . ' KB';
+                    }
+                }
+            }
+        }
+    }
+
+    
+     if (!isset($errors)) 
+    {
+        
+        $sql = 'INSERT INTO buy_products_demand (buyer_username,buyer_name,buyer_email,buyer_phone,buyer_category,buyer_type,product_name,estimated_price,quantity,product_details) VALUES (?,?,?,?,?,?,?,?,?,?)';
       
+        $statement = $conn->prepare($sql);
+
+        $statement->bind_param('sissssisis',$use,$buyerName,$buyerEmail,$buyerPhone,$pro_cat,$buyerType,$proName,$bPrice,$bQuantity,$pDetails);
+
+
+        echo "<script>alert('Information Store Sucessfully'); 
+                  window.location='buyProduct.php'</script>";
+        
+        $statement->execute();
+
+       
+        $lastInsertId = $conn->insert_id;
+
+       
+        $statement->close();
+
+        
+         foreach ($filenamesToSave as $filename) 
+        {
+            $sql = 'INSERT INTO b_products_images (product_id,filename) VALUES (?, ?)';
+
+            $statement = $conn->prepare($sql);
+
+            $statement->bind_param('is', $lastInsertId, $filename);
+
+            $statement->execute();
+
+            $statement->close();
+        }
+
+
+
+      
+       
+
+        $conn->close();
+
+        $productSaved = TRUE;
+
+       
+       
+    }
+
+
+    else{
+             echo "<script>alert('Eror Ocured.Try Again'); 
+                    window.location='buyer_profile.php'</script>";
+         }
+
+
+
+
+
+}
+?>
+
+
+
+
+  <!------------------------  Middle Column  -------------------------->
+
+   
+            
 <div class="w3-col m7">
     
       <div class="w3-row-padding">
@@ -483,68 +664,80 @@
               <br>
               <h3 style="color:white" ;><b>Product Information :</b></h3>
              
-              <form method="post" action="buyer_profile.php" class="w3-container w3-card-4 w3-light-grey">
+              <form method="post" action="buyer_profile.php" class="w3-container w3-card-4 w3-light-grey" enctype="multipart/form-data">
               <br>
               
 
+                
+                <input type="text" name="buyer_name"  placeholder="Enter Your Name" value="<?php echo isset($buyerName) ? $buyerName : ''; ?>">
 
-              <input type="text" class="form-control" placeholder="Enter Your Name" name="first">
 
-              <input type="text" class="form-control" placeholder="Enter Your Email" name="email">
+               <input type="text" name="buyer_email"  placeholder="Enter Your Email" value="<?php echo isset($buyerEmail) ? $buyerEmail : ''; ?>">
+
               
-              <input type="text" class="form-control" placeholder="Enter Your Phone Number" name="phone">
+              <input type="text" name="buyer_phone"  placeholder="Enter Your Phone Number"  value="<?php echo isset($buyerPhone) ? $buyerPhone : ''; ?>">
+              
 
-             
-              <p><label>Product Category</label></p>
+          <p><label>Product Category</label></p>
 
-                 <select class="form-control" name="product_cat">
+                 <select class="form-control" name="#">
                     <option value="Cars" selected>Cars</option>
                     <option value="Electronics">Electronics</option>
                     <option value="Furnitures">Furnitures</option>
                     <option value="Real estate">Real estate</option>
                     
-                  </select>
-             
-            <br></br>
+                </select>
 
-               <p><label>Buying Catagory </label></p>
 
-                  <select class="form-control" name="buyer_typ">
+              <input type="text" name="buyer_category"  placeholder="Enter Your Category"  value="<?php echo isset($pro_cat) ? $pro_cat: ''; ?>">
+
+             <br></br>
+              
+             <p><label>Buying Catagory </label></p>
+
+                  <select class="form-control" name="##">
                     <option value="Regular" selected>Regular</option>
                     <option value="Bid">Bid</option>
                   </select>
-
             
 
+              <input type="text" name="buyer_type"  placeholder="Enter Your Type"  value="<?php echo isset($buyerType) ? $buyerType: ''; ?>">
+
+             <br></br>
+
+
+              <input type="text" name="product_name"  placeholder="Product Name" value="<?php echo isset($proName) ? $proName: ''; ?>">
+
+
+             <input type="text" name="estimated_price"  placeholder="Enter Your Price" value="<?php echo isset($bPrice) ? $bPrice: ''; ?>">
+
+
+            <input type="text" name="quantity"   placeholder="Enter Your Quantity" value="<?php echo isset($bQuantity) ? $bQuantity: ''; ?>">
+
+
+          <br></br>
+
+
+
+            <label for="file">Images</label>
+            <input type="file" id="file" name="file[]" multiple>
+
+            
             <br></br>
 
 
-              <input type="text" class="form-control" placeholder="Product Name" name="product">
+ <textarea class="w3-input w3-border" name="product_details" type="text" placeholder="Product Details" value="<?php echo isset($pDetails) ? $pDetails: ''; ?>"></textarea>
 
-              <input type="text" class="form-control" placeholder="Enter Your Price" name="price">
-
-              <input type="text" class="form-control" placeholder="Enter Your Quantity" name="quantity">   
-                  
-            <br></br>
-
-              <input type="file" name="photo" accept="image/*"> 
-
-            <br></br>
-                  
-              <textarea class="w3-input w3-border" name="product_details" type="text" placeholder="Product Details"></textarea>
-
-              
-               
-             <hr>
-
-             
+              <hr>
                <br></br>
+
               
-              <button type="submit" name="done" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Post</button> 
+              <button type="submit" id="submit" name="done" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Post</button> 
               <br></br>
 
              </form>
-            </form>
+         </form>
+
 
 
             </div>
@@ -560,72 +753,17 @@
 
 
 
-<?php
-    
-
-    $conn = mysqli_connect("localhost","root","","cse_499a");
-
-
-     $use = $_SESSION['user_name'];
-     
-
-   
-   if(isset($_POST['done']))
-  {              
-    
-         
-          $first = $_POST['first'];
-          $email = $_POST['email'];
-          $phone = $_POST['phone'];
-          $product_cat = $_POST['product_cat'];
-          $buyer_typ = $_POST['buyer_typ'];
-
-          $product = $_POST['product'];
-          $price = $_POST['price'];
-          $quantity = $_POST['quantity'];
-          $product_details = $_POST['product_details'];
-
-
-    $buyer_pro ="INSERT INTO buy_products_demand (buyer_username,buyer_name,buyer_email,buyer_phone,buyer_category,buyer_type,product_name,estimated_price,quantity,product_details)  VALUES ('$use','$first','$email','$phone','$product_cat','$buyer_typ','$product','$price',' $quantity','$product_details')";
-   
-     
-
-    $up_buyer_pro = mysqli_query($conn, $buyer_pro) ;
-
-
-               if($up_buyer_pro)
-              {
-                  echo "<script>alert('Information Update Sucessfully'); 
-                  window.location='buyProduct.php'</script>";
-
-              }
-              else{
-                    echo "<script>alert('Eror .Try Again'); 
-                    window.location='buyer_profile.php'</script>";
-                 }
-              
-          
-
-    
-
-  }
-
-
-?>
 
 
 
 
+    <!------------------------  End Middle Column  ----------------->
 
-
-
-
-    <!-- End Middle Column -->
     </div>
 
 
   
-    <!-- Right Column -->
+    <!--------------------------  Right Column  ------------------->
   
   
    <div class="w3-dropdown-hover w3-hide-small">
@@ -654,29 +792,41 @@
               <span id='ct' ></span>
            </body>
 
+
+
            <hr>
         </div>
-      </div>
-      <br>
-  
-  
-      </div>
-     
-      <br>
-      
 
-      
-    <!-- End Right Column -->
+
+
+      </div>
+
+      <br>
+
+       
+    
+      <button onclick="window.location.href='buyer_own_post.php';" class="w3-button w3-block w3-theme-l1 w3-left-align w3-hover-green"> <i class="fa fa-info fa-fw w3-margin-right"></i>See Your Posts</button>
+                     
+              
+                
+      </div>
+
+
+      <br>
+
+     
+    <!-------------------  End Right Column  -------------->
+
     </div>
     
-  <!-- End Grid -->
+    <!--------------------  End Grid  -------------->
+
   </div>
   
-<!-- End Page Container -->
+    <!--------------- End Page Container --------------->
+
 </div>
 <br>
-
-
 
 
 <div>
@@ -685,7 +835,7 @@
 
 
 
-<!-- Footer Start -->
+   <!--------------------  Footer Start  ------------------>
 
 
 
@@ -802,5 +952,8 @@ function myFunction(id) {
   <script src="js/custom.js"></script>
   
     
-</body>
+ </body>
+
+
 </html>
+

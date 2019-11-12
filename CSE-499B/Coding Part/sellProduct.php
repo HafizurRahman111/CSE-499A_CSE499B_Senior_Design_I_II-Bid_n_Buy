@@ -1,15 +1,18 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <title>Buy & Sell</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Your page description here" />
-  <meta name="Eshan" content="" />
+  <meta name="Himel" content="" />
 
   <!-- css -->
+
   <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet" />
   <link href="css/bootstrap-responsive.css" rel="stylesheet" />
@@ -20,9 +23,11 @@
   <link href="css/style.css" rel="stylesheet" />
 
   <!-- Theme skin -->
+
   <link href="color/default.css" rel="stylesheet" />
 
   <!-- Fav and touch icons -->
+
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
@@ -35,7 +40,8 @@
 
   <div id="wrapper">
 
-    <!-- start header -->
+    <!--------------- Start header ----------------->
+
     <header>
       <div class="top">
         <div class="container">
@@ -46,6 +52,7 @@
             <div class="span6">
 
               <ul class="social-network">
+
                 <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
                 <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
                 <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
@@ -65,18 +72,21 @@
 
         <div class="row nomargin">
           <div class="span3">
+
             <div class="logo">
               <a href="index.php"><img src="img/logo.jpg" alt="" />Buy & Sell</a>
             </div>
+
           </div>
+
           <div class="span9">
             <div class="navbar navbar-static-top">
               <div class="navigation">
                 <nav>
                   <ul class="nav topnav">
+
                     <li>
-                      <a href="index.php">Home
-                      </a>
+                      <a href="index.php">Home</a>
                     </li>
 
                     <li >
@@ -84,11 +94,11 @@
                     </li>
 
                     <li class="active">
-                      <a href="sellProduct.html">Sell Products</a>
+                      <a href="sellProduct.php">Sell Products</a>
                     </li>
 
                     
-				    <li>
+				            <li>
                       <a href="contactUs.php">Contact Us</a>
                     </li>
 
@@ -101,7 +111,7 @@
 
                      <li>	  
 				 
-				  <!--Log In Pop Up--> 
+				  <!-----------------    Log In Pop Up    -----------------> 
 				  
                     <a class="btn btn-large btn-primary" role="button" href="#" data-target="#login" data-toggle="modal">Log In</a>
 
@@ -155,20 +165,21 @@
 				  
 				  
 				  	
-                    
-
-                
+          
 
                   </ul>
                 </nav>
               </div>
-              <!-- end navigation -->
+
+              <!------------------------    End Navigation   ------------------->
+
             </div>
           </div>
         </div>
       </div>
     </header>
-    <!-- end header -->
+
+            <!-----------------------------  End Header  ----------------------->
 
     <section id="inner-headline">
       <div class="container">
@@ -176,8 +187,10 @@
           <div class="span12">
             <div class="inner-heading">
               <ul class="breadcrumb">
+
                 <li><a href="index.php">Home</a> <i class="icon-angle-right"></i></li>
                 <li class="active"> Sell Products</li>
+
               </ul>
               <h2>Sell your quality Products</h2>
             </div>
@@ -196,10 +209,12 @@
 
               <div class="widget">
                 <form>
+
                   <div class="input-append">
                     <input class="span2" id="appendedInputButton" type="text" placeholder="Type here">
                     <button class="btn btn-theme" type="submit">Search</button>
                   </div>
+
                 </form>
               </div>
 
@@ -208,6 +223,7 @@
                 <h5 class="widgetheading">Categories</h5>
 
                 <ul class="cat">
+
                       <li><i class="icon-angle-right"></i> <a href="#">Electronics</a><span> (20)</span></li>
                       <li><i class="icon-angle-right"></i> <a href="#">Cars/Bikes</a><span> (11)</span></li>
                       <li><i class="icon-angle-right"></i> <a href="#">Real estate</a><span> (18)</span></li>
@@ -220,12 +236,16 @@
               <div class="widget">
                 <div class="tabs">
                   <ul class="nav nav-tabs">
+
                     <li class="active"><a href="#one" data-toggle="tab"><i class="icon-star"></i> Popular</a></li>
                     <li><a href="#two" data-toggle="tab">Recent</a></li>
+
                   </ul>
+
                   <div class="tab-content">
                     <div class="tab-pane active" id="one">
                       <ul class="popular">
+
                         <li>
                           <img src="img/recent/small/iphone.png" alt="" class="thumbnail pull-left" />
                           <p><a href="#">I phones for sell</a></p>
@@ -284,32 +304,35 @@
                 <div class="row">
                   
                  
-<!-- PHP -->
+<!--------------------- PHP CODE -------------------->
+
+
 <?php 
       
+
+      include 'config.php';
+      include 'connection.php';
    
    $conn = mysqli_connect("localhost","root","","cse_499a"); 
    
-  
    $sql = "SELECT * FROM buy_products_demand ORDER BY b_product_id DESC LIMIT 0,10";
+
    
    if ($result = mysqli_query($conn,$sql))
    {
-
-
+        
+                     
            while ($row = mysqli_fetch_assoc($result)) 
                {
           
-                 
-
-
 
                      echo "<div class='span4'>
                         <div class='item'>
                       <div class='flip-card'>
-                        <div class='flip-card-inner' size='width:100px,height:150px'>
+                        <div class='flip-card-inner' size='width:150px,height:170px'>
                          <div class='flip-card-front' >
-                           <img src='images/icons/3.jpg'/".$row['filename']."' alt='Avatar'style='width:150px;height:200px;''>
+
+
                               </div>
 
                               <div class='flip-card-back'>
@@ -320,6 +343,7 @@
                                 <p>Product Name : ".$row['product_name']."</p>
                                 <p>Price : ".$row['estimated_price']."</p>
                                 <p>Quantity : ".$row['quantity']."</p>
+
                              
                                 <p><button class='btn btn-success btn-sm'>".$row['buyer_type']."</button></p>
 
@@ -334,16 +358,16 @@
    
 
 
-      }        
-       
+      }    
+
+
+
 
       
 ?>
 
 
-<!-- PHP -->
-
-
+     <!--------------------------    PHP  ------------------------------>
 
 
 
@@ -473,5 +497,7 @@
   <!-- Template Custom JavaScript File -->
   <script src="js/custom.js"></script>
 
-  </body>
+   </body>
+
+
   </html>
