@@ -1,7 +1,20 @@
+
+
+<?php
+
+     ob_start(); 
+     include_once("connection.php");
+
+     session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <title>Admin Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +22,7 @@
   <meta name="Himel" content="" />
 
   <!-- css -->
+
   <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet" />
   <link href="css/bootstrap-responsive.css" rel="stylesheet" />
@@ -19,11 +33,13 @@
   <link href="css/style.css" rel="stylesheet" />
 
   <!-- Theme skin -->
+
   <link href="color/default.css" rel="stylesheet" />
 
   <!-- Fav and touch icons -->
+
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+  
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
   <link rel="shortcut icon" href="ico/favicon.png" />
@@ -73,9 +89,9 @@
               <div class="navigation">
                 <nav>
                   <ul class="nav topnav">
-                    <li class="active">
-                      <a href="index.php">Home
-                      </a>
+
+                    <li>
+                      <a href="index.php">Home</a>
                     </li>
 
                     <li>
@@ -95,18 +111,6 @@
                       <a href="aboutUs.php">About Us</a>
                     </li>
 
-                   
-
-                 
-				
-				  
-				  
-				
-				  
-
-				  
-				  
-				  	
 				
               </ul>
 			  
@@ -118,13 +122,16 @@
                   </ul>
                 </nav>
               </div>
-              <!-- end navigation -->
+
+              <!---------------   End Navigation  ----------->
+
             </div>
           </div>
         </div>
       </div>
     </header>
-    <!-- end header -->
+
+         <!-----------------  End Header  ------------->
 	
 	
     
@@ -139,7 +146,7 @@
                     <br>
 					 <br>
 					  <br>
-                      <img class="img-responsive pull-left" src="admin_login.png" style="height:400px; width:360px;"> 
+                      <img class="img-responsive pull-left" src="admin_login.png" style="height:150px; width:180px;"> 
 					   <h3><b>Admin Login</b></h3> 
 					  
 					    <div class="form-group">
@@ -154,12 +161,7 @@
 				   
                       <button type="submit" name="sub" class="btn btn-primary">Submit</button>
                       
-                     
-					  
-                     
-					  
-					  
-					  
+                  
 					  
                   </div>
 				  
@@ -181,63 +183,53 @@
     </section>
   
   <?php
+
         include_once("connection.php");
         
-        session_start();
         
-        if(isset($_POST['sub'])){
+         if(isset($_POST['sub']))
+        {
             $user = $_POST['username'];
             $pass = $_POST['password'];
            
             
-            $sql = "SELECT username,password FROM admin_signup
-                           WHERE username='$user' AND password='$pass'";
+            $sql = "SELECT * FROM admin_signup
+                           WHERE username='$user' AND pass='$pass'";
             
             $res = mysqli_query($conn,$sql);
-            $count=mysqli_num_rows($res);
+            $count = mysqli_num_rows($res);
             
-            if($count == 1){
-                $_SESSION['ruser']=$user;
-               
-                  echo"<script>swal({
-                    title: 'Congratulation ! Admin You Login Successfully',  
-                    text: 'Thank You',
-                    icon: 'success',
-                    timer: 3000,
-                    button: false,
-                    });</script>";
+             if($count == 1)
+            {
 
+                $_SESSION['username']=$user;
 
-				 
+                        echo "<script>alert('Congratulation ! Admin , Login Successfull.');
+                    
+                         window.location='admin_profile.php'</script>";
                
-                header('location: admin_profile.php');  
             }
             
-            else{
-               echo"<script>swal({
-                    title: 'Username or Password is Incorrect',
-                    text: 'Try Again',
-                    icon: 'error',
-                    timer: 3000,
-                    button: false,
-
-                });</script>";
+             else
+            {
+               echo "<script>alert('Error ! Admin Login , Try Again.');
+                    
+                     </script>";
+                  
             }
             
         }
         
+         ob_end_flush();
         
         
-        
-        ?>
-		
-		
-		
+      ?>
 		
 		
 		
 		
 	 <footer>
+
       <div class="container">
         <div class="row">
           <div class="span4">
@@ -247,59 +239,62 @@
               <h5 class="widgetheading">Learn More</h5>
               <ul class="link-list">
 			  
-			   <li><a href="aboutUs.php">About Us</a></li>
-			   	<li><a href="contactUs.php">Contact Us</a></li>
+			          <li><a href="aboutUs.php">About Us</a></li>
+			   	      <li><a href="contactUs.php">Contact Us</a></li>
                 <li><a href="#">Membership</a></li>
 			
-				 
-				 
                 <li><a href="#">Promote Your Add</a></li>
                 <li><a href="#">Terms and Conditions</a></li>
                  
                 <li><a href="#"></a></li>
+
               </ul>
 
             </div>
 			
-			
-			
+		
           </div>
 
           <div class="span4">
             <div class="widget">
+
               <h5 class="widgetheading">Get in touch</h5>
-              <address>
-							<strong>Buy & Sell</strong><br>
-							Bashundhara Residential Area<br>
-							Dhaka, Bangladesh
-						</address>
+              <address><strong>Buy & Sell</strong><br>Bashundhara Residential Area<br>Dhaka, Bangladesh</address>
+
               <p>
                 <i class="icon-phone"></i> +880 1675695322 <br>
                 <i class="icon-envelope-alt"></i> buynsell@gmail.com
               </p>
+
             </div>
           </div>
+
           <div class="span4">
             <div class="widget">
+
               <h5 class="widgetheading">Subscribe for latest product updates</h5>
               <p>
                 Keep track for new products Sell & Buy updates. Enter your e-mail and subscribe to our newsletter.
               </p>
+
               <form class="subscribe">
                 <div class="input-append">
                   <input class="span2" id="appendedInputButton" type="text">
                   <button class="btn btn-theme" type="submit">Subscribe</button>
                 </div>
               </form>
+
             </div>
           </div>
         </div>
       </div>
 
       <div id="sub-footer">
+
         <div class="container">
           <div class="row">
             <div class="span6">
+
               <div class="copyright">
                 <p><span>&copy; Company. All right reserved</span></p>
               </div>
@@ -316,7 +311,9 @@
       </div>
 
     </footer>
+
   </div>
+
   <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>
 
 
@@ -343,10 +340,12 @@
   <script src="js/animate.js"></script>
   <script src="js/inview.js"></script>
 
-  <!-- Template Custom JavaScript File -->
+  
+  
   <script src="js/custom.js"></script>	
 		
 		
 		
-</body>
-</html>
+  </body>
+
+ </html>

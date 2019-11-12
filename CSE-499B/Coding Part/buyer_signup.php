@@ -345,7 +345,7 @@
           $sql = "INSERT INTO buyer_signup(firstname,lastname,username,phone,password,reg_time)
                   VALUES('$fname','$lname','$uname','$phone','$pass','$reg_time')";
 
-
+          
 
 
                  if(empty($fname) || empty($lname) || empty($uname) || empty($pass) || empty($phone) )
@@ -385,16 +385,24 @@
                       });</script>";
 
 
+                   $lastInsertId = $conn->insert_id;
 
-                        $for_buyer_profile = "INSERT INTO buyer_profile(b_id,username) VALUES('','$uname')";
+         
+                   $for_buyer_profile = 'INSERT INTO buyer_profile (b_id,username) VALUES (?, ?)';
 
+                   $statement = $conn->prepare( $for_buyer_profile);
 
-                        $r = mysqli_query($conn,$for_buyer_profile);
+                   $statement->bind_param('is', $lastInsertId, $uname);
 
+                   $statement->execute();
 
+                   $statement->close();
+        
 
                   }
+
                 }
+
         ?>
 
 
