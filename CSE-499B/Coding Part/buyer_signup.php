@@ -386,7 +386,7 @@
                       button: false,
                       });
 
-                      window.location='index.php'</script>";
+                      window.location='buyer_login.php'</script>";
                       
 
                    $lastInsertId = $conn->insert_id;
