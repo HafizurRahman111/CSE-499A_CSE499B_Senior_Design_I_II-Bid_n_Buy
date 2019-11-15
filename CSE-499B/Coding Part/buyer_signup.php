@@ -139,7 +139,7 @@
 
                    <ul class="nav topnav">
 
-                     <li class="active">
+                     <li>
                        <a href="index.php">Home</a>
                      </li>
 
@@ -160,7 +160,7 @@
                      </li>
 
 
-                    <li>
+                    <li class="active">
                     <a href="#myModal" role="button" class="btn btn-large btn-primary" data-toggle="modal">Sign Up</a>
 
                     <!-------------- Popup for Sign Up --------------->
