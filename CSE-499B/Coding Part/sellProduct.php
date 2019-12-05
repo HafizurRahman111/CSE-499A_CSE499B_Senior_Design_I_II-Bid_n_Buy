@@ -344,8 +344,8 @@
                                 <p>Price : ".$row['estimated_price']."</p>
                                 <p>Quantity : ".$row['quantity']."</p>
 
-                             
-                                <p><button class='btn btn-success btn-sm'>".$row['buyer_type']."</button></p>
+                              
+                                <p><button class='btn btn-success btn-sm'><a href='product_details_page.php' >".$row['buyer_type']."</a></button></p>
 
                       </div>
                     </div>

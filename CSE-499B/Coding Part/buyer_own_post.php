@@ -34,6 +34,7 @@
 
 
   <!-- css -->
+
   <link href="https://fonts.googleapis.com/css?family=Handlee|Open+Sans:300,400,600,700,800" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet" />
   <link href="css/bootstrap-responsive.css" rel="stylesheet" />
@@ -47,6 +48,7 @@
 
 
   <!-- Profile Block and Others -->
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -55,6 +57,7 @@
 
 
   <!-- Theme skin -->
+
   <link href="color/default.css" rel="stylesheet" />
 
   <!-- Fav and touch icons -->
@@ -66,25 +69,7 @@
    
 
 
-   <!-- Real Time Show -->
-
-   <script type="text/javascript"> 
-
-      function display_c()
-     {
-       var refresh=1000; // Refresh rate in milli seconds
-       mytime=setTimeout('display_ct()',refresh)
-     }
-
-     function display_ct() 
-    {
-      var x = new Date()
-      document.getElementById('ct').innerHTML = x;
-      display_c();
-    }
-
-
-</script>
+   
 
 
   <style>
@@ -95,6 +80,15 @@
       text-shadow:3px 3px 8px #000000;
    }
 
+.pt-3-half {
+padding-top: 1.4rem;
+}
+
+
+
+
+
+ 
 
 
  </style>
@@ -107,12 +101,13 @@
 
  <body>
 
-<!-- Header Start -->
+<!--------------------  Header Start  ----------------->
 
 
   <div id="wrapper">
 
-    <!-- start header -->
+    <!----------------      Start Header     ---------------->
+
     <header>
       <div class="top">
         <div class="container">
@@ -124,7 +119,7 @@
             </div>
             
 
-       <ul class="social-network">
+        <ul class="social-network">
         <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
         <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
         <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
@@ -229,7 +224,8 @@
                   </ul>
                 </nav>
               </div>
-              <!-- end navigation -->
+
+              <!----------------     End Navigation    ----------->
 
 
             </div>
@@ -237,11 +233,12 @@
         </div>
       </div>
     </header>
-    <!-- end header -->
+
+    <!--------------------  End Header  ------------------->
 
   
 
-<!-- Page Container -->
+<!--------------------  Page Container  --------------------->
 
 
  <div class="w3-container w3-content" style="max-width:1450px;margin-top:30px">    
@@ -251,252 +248,36 @@
     <!-- Left Column -->
     <div class="w3-col m3">
   
-      <!-- Profile -->
-    
-      <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
-         <h4 class="w3-center bold text-shadow: 2px 2px #FF0000">My Profile</h4> 
-         <hr></hr>
-        
-         
-
-         <p><i class="fa fa fa-star-o fa-fw w3-margin-right w3-large w3-text-teal"></i>
-
-     
-         <hr></hr>
-         <hr>
-
-         <p><i class="fa fa-user-circle fa-fw w3-margin-right w3-large w3-text-teal"></i>
-
- <?php 
       
-   
-       $conn = mysqli_connect("localhost","root","","cse_499a"); 
-  
-         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
- 
-           if($result = mysqli_query($conn,$sql))
-        {
- 
-                   while ($row = $result->fetch_assoc()) 
-               {
-                       $firstname = $row["firstname"];      
-                       $lastname = $row["lastname"];
-
-       
-                     echo '<tr> 
-
-                              <td>'.$firstname.'</td>                    
-                              <td>'.$lastname.'</td> 
-                  
-                          </tr>';
-       
-                 }
-        
-         
-           }
-      
-?>
-
-     <hr>
-     
-
-
-         <p><i class="fa fa fa-user fa-fw w3-margin-right w3-large w3-text-teal"></i>
- 
-<?php 
-      
-   
-       $conn = mysqli_connect("localhost","root","","cse_499a"); 
-  
-         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
- 
-           if($result = mysqli_query($conn,$sql))
-        {
- 
-                   while ($row = $result->fetch_assoc()) 
-               {
-                       $username = $row["username"];      
-       
-                     echo '<tr> 
-
-                              <td>'.$username.'</td>                                         
-                  
-                          </tr>';
-       
-                 }
-        
-         
-           }
-      
-?>
-
-   </p>
-
-
-<!-- Email -->
-
-<p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>   </p>
-
-
-
-<p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>
-
-
-  <?php 
-      
-   
-       $conn = mysqli_connect("localhost","root","","cse_499a"); 
-  
-         $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
- 
-           if($result = mysqli_query($conn,$sql))
-        {
- 
-                   while ($row = $result->fetch_assoc()) 
-               {
-                       $phone = $row["phone"];      
-       
-                     echo '<tr> 
-
-                              <td>'.$phone.'</td>                                         
-                  
-                          </tr>';
-       
-                 }
-        
-         
-           }
-      
-?>
-
-
-
-
-</p>
-
-
-
-
-
-        </div>
-      </div>
-      <br>
-      
-      <!-- Accordion -->
-
-      <div class="w3-card w3-round">
-
-        <div class="w3-white">
-
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align w3-hover-white"><i class="fa fa-info-circle fa-fw w3-margin-right"></i> More Info</button>
-          <div id="Demo1" class="w3-hide w3-container">
-
-
-         <hr>
-
-         <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>----</p>
-
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>-----</p>
-
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal"></i>-----</p>
-
-         <p><i class="fa fa-language fa-fw w3-margin-right w3-large w3-text-teal"></i>Language :</p>
-     
-         
-        
-
-         <p><i class="fa fa fa-registered fa-fw w3-margin-right w3-large w3-text-teal"></i>Registration Date : 
-
-     <?php   
-        
-		 $conn = mysqli_connect("localhost","root","","cse_499a"); 
-		
-		
-                $sql = "SELECT * FROM buyer_signup WHERE username='$use'"; 
-       
-                 if($result = mysqli_query($conn,$sql))
-               {
-                   while ($row = $result->fetch_assoc()) 
-                  {
-                       $reg_time = $row["reg_time"];   
-
-                       echo substr(".$reg_time",1,11);
-              
-                    }
-      
-           }
-         
-    ?>  
-
-  </p>
-
-          </div>
-      
-    
-     
-   <button onclick="window.location.href='buyer_profile_edit.php';" class="w3-button w3-block w3-theme-l1 w3-left-align w3-hover-white">
-    <i class="fa fa-edit fa-fw w3-margin-right"></i>Edit Profile</button>
-          <div id="Demo2" class="w3-hide w3-container">
-          <div class="w3-row-padding">
-    
-         
-           
-         </div>
-          </div>
-          
-        </div>      
-      </div>
-      <br>
-      
-    
-      <br>
-      
-     
-    
     <!-- End Left Column -->
 
 
     </div>
 
   
- 
-  
-
-
-
-
-
-
 
 
 <!-- Middle Column -->
 
    
-
-             
-      
-<div class="w3-col m7">
-    
       <div class="w3-row-padding">
-        <div class="w3-col m12">
+        
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding w3-cyan w3-opacity-min">
               
-              <br>
-              <h3 style="color:white" ;><b>Your All Posts :</b></h3>
-             
-             
-                 
-
-
+              
+              <h3 style="color:white" ;><b>Your Products Posts :</b></h3>
+           
+            
             </div>
           </div>
-        </div>
+        
 
+ <br>     
+      
 
-      </div>
-
+  
+  
 
        <?php
 
@@ -513,44 +294,61 @@
    if ($result = mysqli_query($conn,$sql))
    {
         
-     echo "  <div class='span8'> <table width='700'class='w3-table-sm'> <tr>
-  <th>Category </th> 
-  <th>Product ID </th>
-  
-  <th>Price</th>
-  <th>Quantity</th>
-  <th>Type</th>
+         echo "
+         <div id='table'>
 
-  </tr> </table></div>"
+      
+      
 
-  ;
-                     
+         <table class='table table-bordered table-responsive-md table-striped text-center' style='width:100%' >
+        <thead>
+          <tr>
+            <th class='text-center'>Category</th>
+            <th class='text-center'>Product ID</th>
+            <th class='text-center'>Product Name</th>
+            <th class='text-center'>Price</th>
+            <th class='text-center'>Quantity</th>
+            <th class='text-center'>Type</th>
+
+            <th class='text-center'>Update</th> 
+            <th class='text-center'>Remove</th> 
+
+           
+          </tr>
+        </thead>" ;
+
+              
            while ($row = mysqli_fetch_assoc($result)) 
                {
           
                      
 
-                echo "<div class='span8'> <table width='700'class='w3-table-sm'> <tr>
+                echo " 
+                      
+        <table class='table table-bordered table-responsive-md table-striped text-center'>
+        <tbody>
+          <tr>
+            <td class='text-center' >".$row['buyer_category']."</td>
+            <td class='text-center' >".$row['b_product_id']."</td>
+            <td class='text-center' >".$row['product_name']."</td>
+            <td class='text-center' >".$row['estimated_price']."</td>
+            <td class='text-center' >".$row['quantity']."</td>
+            <td class='text-center' >".$row['buyer_type']."</td>
+            
 
-<br>
-<tr>
-
-  <td><b>".$row['buyer_category']."</b></td>
-  <td>".$row['b_product_id']."</td>
-  
-  <td>".$row['estimated_price']."</td>
-  <td>".$row['quantity']."</td>
-  <td>".$row['buyer_type']."</td>
-
-
-
-</tr>
-</table>
-                                       
-           
-               
-               </div>
-              " ;
+            <td class='table-edit'><button type='button'
+                  class='btn btn-edit btn-rounded btn-sm my-0'>Update</button></td>
+            
+              <td class='table-remove'><button type='button'
+                  class='btn btn-danger btn-rounded btn-sm my-0'>Delete</button></td> 
+            
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
+    
+   " ;
 
 
                }
@@ -584,55 +382,8 @@
     <!-- Right Column -->
   
   
-   <div class="w3-dropdown-hover w3-hide-small">
-     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">1</span></button>  
-
-     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:250px">
-      <a href="#" class="w3-bar-item w3-button">#</a>
-      <a href="#" class="w3-bar-item w3-button">##</a>
-      
-    </div>
-                    
-                    
-  
-    </div>
-  
-  
-    <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center" style="width:260px">
-        <div class="w3-container">
-
-         <hr>
-          <p><strong>Today</strong></p>
-         
-
-          <body onload=display_ct();>
-              <span id='ct' ></span>
-           </body>
-
-
-
-           <hr>
-        </div>
-
-
-
-      </div>
-
-      <br>
-
-       
-            
-
-    
-      
-              
-                
-            
-  
-      </div>
-
-
+ 
+   
      
       <br>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2019 at 06:03 PM
+-- Generation Time: Nov 15, 2019 at 07:21 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -72,8 +72,7 @@ CREATE TABLE `buyer_profile` (
 --
 
 INSERT INTO `buyer_profile` (`bp_id`, `b_id`, `username`, `works`, `current_address`, `parmanent_address`, `birthday`, `language`, `email`) VALUES
-(9, 88, 'himel82', '', '', '', '0000-00-00 00:00:00.000000', '', ''),
-(10, 91, 'eshan88', 'Student', 'Bashabo', 'Ctg', '2019-11-01 00:00:00.000000', 'Bengali', 'eshan@gmail.com');
+(19, 131, 'himel20', '', '', '', '0000-00-00 00:00:00.000000', '', '');
 
 -- --------------------------------------------------------
 
@@ -88,7 +87,7 @@ CREATE TABLE `buyer_signup` (
   `username` varchar(25) NOT NULL,
   `phone` varchar(25) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `reg_time` datetime NOT NULL
+  `reg_time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -96,8 +95,7 @@ CREATE TABLE `buyer_signup` (
 --
 
 INSERT INTO `buyer_signup` (`b_id`, `firstname`, `lastname`, `username`, `phone`, `password`, `reg_time`) VALUES
-(88, 'Himel', 'Hafizur', 'himel82', '3949949', 'himel', '2019-11-12 17:28:41'),
-(91, 'Eshan', 'Barua', 'eshan88', '018188', 'nullp', '2019-11-12 17:29:52');
+(131, 'Hafizur', 'Rahman', 'himel20', '0199', 'null', '2019-11-15 23:17:03');
 
 -- --------------------------------------------------------
 
@@ -170,12 +168,23 @@ CREATE TABLE `contact_us` (
 
 CREATE TABLE `seller_profile` (
   `sp_id` int(10) NOT NULL,
+  `s_id` int(10) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `works` varchar(20) NOT NULL,
   `current_address` varchar(40) NOT NULL,
   `parmanent_address` varchar(40) NOT NULL,
   `birthday` datetime(6) NOT NULL,
-  `language` int(20) NOT NULL
+  `language` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `seller_profile`
+--
+
+INSERT INTO `seller_profile` (`sp_id`, `s_id`, `username`, `works`, `current_address`, `parmanent_address`, `birthday`, `language`, `email`) VALUES
+(1, 49, 'barua', '', '', '', '0000-00-00 00:00:00.000000', '0', ''),
+(2, 51, 'himel123', '', '', '', '0000-00-00 00:00:00.000000', '', '');
 
 -- --------------------------------------------------------
 
@@ -190,8 +199,16 @@ CREATE TABLE `seller_signup` (
   `username` varchar(20) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `reg_time` datetime NOT NULL
+  `reg_time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `seller_signup`
+--
+
+INSERT INTO `seller_signup` (`s_id`, `firstname`, `lastname`, `username`, `phone`, `password`, `reg_time`) VALUES
+(49, 'Eshan', 'Barua', 'barua', '0183', 'null', '2019-11-15 22:22:51'),
+(51, 'Hafizur', 'Rahman', 'himel123', '123', '12', '2019-11-15 23:49:47');
 
 --
 -- Indexes for dumped tables
@@ -211,7 +228,8 @@ ALTER TABLE `admin_signup`
 -- Indexes for table `buyer_profile`
 --
 ALTER TABLE `buyer_profile`
-  ADD PRIMARY KEY (`bp_id`);
+  ADD PRIMARY KEY (`bp_id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `buyer_signup`
@@ -246,14 +264,17 @@ ALTER TABLE `contact_us`
 -- Indexes for table `seller_profile`
 --
 ALTER TABLE `seller_profile`
-  ADD PRIMARY KEY (`sp_id`);
+  ADD PRIMARY KEY (`sp_id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `seller_signup`
 --
 ALTER TABLE `seller_signup`
   ADD PRIMARY KEY (`s_id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `s_id` (`s_id`),
+  ADD UNIQUE KEY `phone` (`phone`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -269,13 +290,13 @@ ALTER TABLE `admin_signup`
 -- AUTO_INCREMENT for table `buyer_profile`
 --
 ALTER TABLE `buyer_profile`
-  MODIFY `bp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `bp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `buyer_signup`
 --
 ALTER TABLE `buyer_signup`
-  MODIFY `b_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `b_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `buy_products_demand`
@@ -293,19 +314,19 @@ ALTER TABLE `b_products_images`
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `contact_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `contact_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `seller_profile`
 --
 ALTER TABLE `seller_profile`
-  MODIFY `sp_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `sp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `seller_signup`
 --
 ALTER TABLE `seller_signup`
-  MODIFY `s_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `s_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

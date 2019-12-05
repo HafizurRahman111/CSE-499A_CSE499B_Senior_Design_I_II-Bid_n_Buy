@@ -3,6 +3,7 @@
 <?php
 
      ob_start(); 
+
      include_once("connection.php");
 
      session_start();
@@ -50,26 +51,30 @@
 
   <div id="wrapper">
 
-    <!-- start header -->
+    <!------------------------ Start Header ---------------->
+
     <header>
+
       <div class="top">
         <div class="container">
           <div class="row">
+
             <div class="span6">
               <p class="topcontact"><i class="icon-phone"></i> +880 1675695322</p>
             </div>
+
             <div class="span6">
 
               <ul class="social-network">
+
                 <li><a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-white"></i></a></li>
                 <li><a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-white"></i></a></li>
                 <li><a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-white"></i></a></li>
                 <li><a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest  icon-white"></i></a></li>
-                <li><a href="#" data-placement="bottom" title="Google +"><i class="icon-google-plus icon-white"></i></a></li>
+               
                
             </div>
 			
-
           </div>
         </div>
       </div>
@@ -80,9 +85,11 @@
 
         <div class="row nomargin">
           <div class="span3">
+
             <div class="logo" id="logo">
               <a href="index.php"><img src="img/logo.jpg" alt="" />Buy & Sell</a>
             </div>
+
           </div>
           <div class="span9">
             <div class="navbar navbar-static-top">
@@ -111,120 +118,111 @@
                       <a href="aboutUs.php">About Us</a>
                     </li>
 
-				
               </ul>
 			  
+            </ul>
 			  
 
-              </ul>
-			  
+                </ul>
+              </nav>
+            </div>
 
-                  </ul>
-                </nav>
-              </div>
-
-              <!---------------   End Navigation  ----------->
+          <!-----------------------   End Navigation  ----------------->
 
             </div>
           </div>
         </div>
       </div>
+
     </header>
 
-         <!-----------------  End Header  ------------->
+         <!---------------------  End Header  ------------------->
 	
 	
     
 	 <section id="sellerlogin">
 	
-     <div class="c1 container">
-      <div class="row">
-          <div class="col-md-8">
-              <form method="post">
-                  <div class="im1">
-				      			  
-                    <br>
-					 <br>
-					  <br>
-                      <img class="img-responsive pull-left" src="admin_login.png" style="height:150px; width:180px;"> 
-					   <h3><b>Admin Login</b></h3> 
-					  
-					    <div class="form-group">
-                          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username" name="username">
-                     </div>
-					 				 
-                     <div class="form-group">
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                     </div>
-				   
-				   <br>
-				   
-                      <button type="submit" name="sub" class="btn btn-primary">Submit</button>
-                      
-                  
-					  
-                  </div>
-				  
-				  
-                  
-              </form>
-			        <br>
-					 <br>
-					  <br>
+    <div class="c1 container">
+     <div class="row">
+       <div class="col-md-8">
 
-          </div>
+          <form method="post">
+
+            <div class="im1">
+				      			  
+              <br><br><br>
+
+               <img class="img-responsive pull-left" src="admin_login.png" style="height:150px; width:180px;"> 
+
+					     <h3> Login : <b>Admin</b></h3> 
+					  
+					     <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Username" name="username">
+               </div>
+					 				 
+               <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Password" name="password">
+               </div>
+				   
+				       <br>
+				   
+               <button type="submit" name="sub" class="btn btn-primary">Submit</button>   
+					  
+           </div>
+				  
+        </form>
+
+			   <br><br><br>
+
+      </div>
 		
 		           
-		  
-		  
       </div>
-  </div>
+   </div>
   
-    </section>
+  </section>
+
   
   <?php
 
-        include_once("connection.php");
+     include_once("connection.php");
         
         
-         if(isset($_POST['sub']))
-        {
-            $user = $_POST['username'];
-            $pass = $_POST['password'];
+     if(isset($_POST['sub']))
+    {
+            
+       $user = $_POST['username'];
+       $pass = $_POST['password'];
            
             
-            $sql = "SELECT * FROM admin_signup
-                           WHERE username='$user' AND pass='$pass'";
+       $admin_login = "SELECT * FROM admin_signup WHERE username='$user' AND pass='$pass'" ;
             
-            $res = mysqli_query($conn,$sql);
-            $count = mysqli_num_rows($res);
+       $res = mysqli_query( $conn,$admin_login ) ;
+       $count = mysqli_num_rows($res) ;
             
-             if($count == 1)
-            {
+        if($count == 1)
+       {
 
-                $_SESSION['username']=$user;
+          $_SESSION['username']=$user;
 
-                        echo "<script>alert('Congratulation ! Admin , Login Successfull.');
-                    
-                         window.location='admin_profile.php'</script>";
+          echo "<script>alert('Congratulation ! Admin , Login Successfull.');
+                        window.location='admin_profile.php'</script>";
                
-            }
+       }
             
-             else
-            {
-               echo "<script>alert('Error ! Admin Login , Try Again.');
-                    
+         else
+        {
+            echo "<script>alert('Error ! Admin Login , Try Again.');  
                      </script>";
                   
-            }
-            
         }
+            
+    }
         
-         ob_end_flush();
+         ob_end_flush() ;
         
         
-      ?>
-		
+  ?>
 		
 		
 		
@@ -235,8 +233,9 @@
           <div class="span4">
 		  
 		  
-           <div class="widget">
+            <div class="widget">
               <h5 class="widgetheading">Learn More</h5>
+
               <ul class="link-list">
 			  
 			          <li><a href="aboutUs.php">About Us</a></li>
@@ -245,15 +244,13 @@
 			
                 <li><a href="#">Promote Your Add</a></li>
                 <li><a href="#">Terms and Conditions</a></li>
-                 
                 <li><a href="#"></a></li>
 
               </ul>
 
             </div>
 			
-		
-          </div>
+           </div>
 
           <div class="span4">
             <div class="widget">
@@ -273,6 +270,7 @@
             <div class="widget">
 
               <h5 class="widgetheading">Subscribe for latest product updates</h5>
+
               <p>
                 Keep track for new products Sell & Buy updates. Enter your e-mail and subscribe to our newsletter.
               </p>
@@ -302,9 +300,11 @@
             </div>
 
             <div class="span6">
+
               <div class="credits">
                 Designed for CSE499</a>
               </div>
+
             </div>
           </div>
         </div>
@@ -314,13 +314,14 @@
 
   </div>
 
+
   <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>
 
 
 
-  <!-- javascript
-    ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
+  <!------------------- Javascript    ------------------->
+
+  
   <script src="js/jquery.js"></script>
   <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/bootstrap.js"></script>
@@ -346,6 +347,6 @@
 		
 		
 		
-  </body>
+   </body>
 
- </html>
+</html>
