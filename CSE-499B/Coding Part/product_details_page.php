@@ -331,7 +331,7 @@
 
     
     <br></br>
-    <h2 class="set-title" align="center" ><u>Product Specification  </h2></u>
+    <h2 class="set-title" align="center" ><u>Desire Product Specification  </h2></u>
     <br></br>
     
       
@@ -342,21 +342,7 @@
         <div class="col-md-12">
           <div class="product col-md-3 service-image-left">
                     
-            <center>
-              <img id="item-display" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
-            </center>
-          </div>
-          
-          <div class="container service1-items col-sm-2 col-md-2 pull-left">
-           
-          </div>
 
-        </div>
-          
-        <div class="col-md-7">
-
-
-      
 
 <?php 
       
@@ -366,7 +352,7 @@
    
    $conn = mysqli_connect("localhost","root","","cse_499a"); 
    
-   $sql = "SELECT * FROM buy_products_demand  LIMIT 1";
+   $sql = "SELECT * FROM b_products_images  LIMIT 1";
 
    
      if ($result = mysqli_query($conn,$sql))
@@ -375,45 +361,13 @@
         while ($row = mysqli_fetch_assoc($result)) 
        {
           
-            echo "  <div class='product-title'><h2><b>Product Name : ".$row['product_name']."</b></h2></div>
-                     
-                       <p>".$row['buyer_category']."</p>
-                       <br>
+            echo "  
 
-                       <h6>Product ID : ".$row['b_product_id']."</h6>  
-                       <h6> Type : <b> <font color='#FF1493'> ".$row['buyer_type']." </font></b></h6>  
-                       <h6>Quantity : ".$row['quantity']."</h6>
+            <center>
+              <img id='item-display' src='".$row['filename']."' alt=''></img>
+            </center>
 
-                       
-                       <hr>
-                       <div class='product-price'><h3>Price : <b><font color='#1E90FF'> ".$row['estimated_price']."</font></b></h3></div>
-
-                       <div class='product-stock'><b><font color='#00FF00'>".$row['product_status']."</font></div>
-                       </hr>
-
-                       
-                        <br>
-                        <hr>
-
-                        <div class='btn-group cart'>
-                        <button type='button' class='btn btn-success'> Add to cart </button>
-                        </div>
-
-                        <div class='btn-group wishlist'>
-                        <button type='button' class='btn btn-danger'>Add to wishlist </button>
-                        </div>
-                    
-
-                        <br>
-                        <br>
-                        <br>
-
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> " ;
+             " ;
 
 
                }
@@ -431,9 +385,222 @@
 
 
 
+
+          </div>
           
-         
-         
+          <div class="container service1-items col-sm-2 col-md-2 pull-left">
+           
+          </div>
+
+        </div>
+          
+        <div class="col-md-7">
+
+
+      
+
+<?php 
+      
+
+   
+   include 'connection.php';
+
+   $status = 'Going' ;
+   
+   $conn = mysqli_connect("localhost","root","","cse_499a"); 
+   
+   $sql = "SELECT * FROM buy_products_demand  LIMIT 1";
+
+   
+     if ($result = mysqli_query($conn,$sql))
+   {
+          
+        while ($row = mysqli_fetch_assoc($result)) 
+       {
+          
+           
+             //  If Products Condition is available or in stock then 
+
+
+              $ps = $row['product_status'] ; 
+
+              if( $ps == $status ) 
+             {
+                      
+                 echo "
+
+                      <div class='product-title'><h2><b>Product Name : ".$row['product_name']."</b></h2></div>
+                     
+                       <p>".$row['buyer_category']."</p>
+                       <br>
+
+                       <h6>Product ID : ".$row['b_product_id']."</h6>  
+                       <h6> Type : <b> <font color='#FF1493'> ".$row['buyer_type']." </font></b></h6> 
+
+                       <h6> Status : ".$row['product_status']."</h6> 
+                       <h6>Quantity : ".$row['quantity']."</h6>
+
+
+                       <hr>
+                       <div class='product-price'><h3>Estimated Price : <b><font color='#1E90FF'> ".$row['estimated_price']."</font></b></h3></div>
+
+
+                        <div class='product-stock'>
+                        <b><font color='#00FF00'>Going On</font></div>
+                        </hr>
+
+
+                        "  ;
+
+
+                      $typ = $row['buyer_type'] ;  
+
+                      if( $typ == 'Bid' ) 
+
+                    {
+
+                        echo "    
+
+                        <br>
+                        <hr>
+
+                        <div class='btn-group cart'>
+                        <button type='button' class='btn btn-success'> BID NOW </button>
+                        </div>
+
+                        <div class='btn-group wishlist'>
+                        <button type='button' class='btn btn-danger'>BID ADD TO WISHLIST </button>
+                        </div>
+                    
+
+                        <br>
+                        <br>
+                        <br>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                              " ;
+
+                             
+
+                            }
+
+
+                          else {
+
+
+                        echo" 
+                         <br>
+                        <hr>
+
+                        <div class='btn-group cart'>
+                        <button type='button' class='btn btn-success'> BUY NOW </button>
+                        </div>
+
+                        <div class='btn-group wishlist'>
+                        <button type='button' class='btn btn-danger'>ADD TO WISHLIST </button>
+                        </div>
+                    
+
+                        <br>
+                        <br>
+                        <br>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                              " ;
+
+                             
+
+
+
+
+
+
+
+
+                          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+
+
+                                             
+        else {
+
+
+               echo "
+                      <button class='btn btn-primary btn-danger btn-lg btn-block'>CLOSE</button>
+                      <br>
+                      <br>
+
+                     <div class='product-title'><h2><b>Product Name : ".$row['product_name']."</b></h2></div>
+                      <br>
+
+                      <h6>Product ID : ".$row['b_product_id']."</h6>  
+                      <h6> Type : <b> <font color='#FF1493'> ".$row['buyer_type']." </font></b></h6> 
+
+                      <h6> Status : ".$row['product_status']."</h6> 
+                      
+                      <hr>
+                       
+
+                      <div class='product-stock'>
+                      <b><font color='red'>COMPLETED</font></div>
+                      </hr>  
+
+                      <br>
+                      <hr>
+
+
+                      <br>
+                      
+                    
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+               </div>
+
+
+
+
+                              " ;
+
+                  }
+
+           }
+
+
+      }    
+
+      
+?>
+
+
+     <!--------------------------    PHP  ------------------------------>
+    
 
 
     </div> 
@@ -441,9 +608,6 @@
     <div class="container-fluid">   
       <div class="col-md-12 product-info">
           <ul id="myTab" class="nav nav-tabs nav_tabs">
-
-
-
 
 
     
