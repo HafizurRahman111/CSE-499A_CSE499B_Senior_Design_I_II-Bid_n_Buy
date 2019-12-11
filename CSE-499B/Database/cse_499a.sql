@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2019 at 07:21 PM
+-- Generation Time: Dec 11, 2019 at 07:00 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -72,7 +72,8 @@ CREATE TABLE `buyer_profile` (
 --
 
 INSERT INTO `buyer_profile` (`bp_id`, `b_id`, `username`, `works`, `current_address`, `parmanent_address`, `birthday`, `language`, `email`) VALUES
-(19, 131, 'himel20', '', '', '', '0000-00-00 00:00:00.000000', '', '');
+(22, 137, 'eshan', '', '', '', '0000-00-00 00:00:00.000000', '', ''),
+(23, 139, 'hafizur', '', '', '', '0000-00-00 00:00:00.000000', '', '');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,8 @@ CREATE TABLE `buyer_signup` (
 --
 
 INSERT INTO `buyer_signup` (`b_id`, `firstname`, `lastname`, `username`, `phone`, `password`, `reg_time`) VALUES
-(131, 'Hafizur', 'Rahman', 'himel20', '0199', 'null', '2019-11-15 23:17:03');
+(137, 'Eshan', 'Barua', 'eshan', '018926266', '123', '2019-12-10 23:52:44'),
+(139, 'Hafizur', 'Rahman', 'hafizur', '01680735420', '123', '2019-12-10 23:53:15');
 
 -- --------------------------------------------------------
 
@@ -109,21 +111,22 @@ CREATE TABLE `buy_products_demand` (
   `buyer_name` varchar(25) NOT NULL,
   `buyer_email` varchar(25) NOT NULL,
   `buyer_phone` varchar(25) NOT NULL,
-  `buyer_category` varchar(15) NOT NULL,
-  `buyer_type` varchar(15) NOT NULL,
+  `category` varchar(15) NOT NULL,
+  `type` varchar(15) NOT NULL,
   `product_name` varchar(25) NOT NULL,
   `estimated_price` double(10,2) NOT NULL,
   `quantity` varchar(10) NOT NULL,
-  `product_details` varchar(30) NOT NULL
+  `product_details` varchar(30) NOT NULL,
+  `product_status` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `buy_products_demand`
 --
 
-INSERT INTO `buy_products_demand` (`b_product_id`, `buyer_username`, `buyer_name`, `buyer_email`, `buyer_phone`, `buyer_category`, `buyer_type`, `product_name`, `estimated_price`, `quantity`, `product_details`) VALUES
-(16, 'eshan88', 'Eshan', 'eshan@gmail.com', '018388', 'Electronics', 'Bid', 'IC7432', 24.00, '14', 'I need IC'),
-(17, 'eshan88', 'Himel', 'himel@gmail.com', '017378', 'Electronics', 'Regular', 'IC7e7', 243.00, '23', 'I need ICe');
+INSERT INTO `buy_products_demand` (`b_product_id`, `buyer_username`, `buyer_name`, `buyer_email`, `buyer_phone`, `category`, `type`, `product_name`, `estimated_price`, `quantity`, `product_details`, `product_status`) VALUES
+(21, 'hafizur', 'Hafizur_Rahman', 'hafizur@gmail.com', '018782', 'Cars', 'Bid', 'Toyota', 1500000.00, '1', 'I need a Car.', 'Going'),
+(22, 'hafizur', 'Hafizur', 'hafizur12@gmail.com', '1234', 'Furnitures', 'Regular', 'Table', 345667.89, '10', 'White Table.', '');
 
 -- --------------------------------------------------------
 
@@ -132,7 +135,7 @@ INSERT INTO `buy_products_demand` (`b_product_id`, `buyer_username`, `buyer_name
 --
 
 CREATE TABLE `b_products_images` (
-  `b_pro_image_id` int(20) NOT NULL,
+  `pro_image_id` int(20) NOT NULL,
   `product_id` int(20) NOT NULL,
   `filename` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -141,9 +144,9 @@ CREATE TABLE `b_products_images` (
 -- Dumping data for table `b_products_images`
 --
 
-INSERT INTO `b_products_images` (`b_pro_image_id`, `product_id`, `filename`) VALUES
-(14, 16, 'uploads/Birthday Wish.jpg'),
-(15, 17, 'uploads/Photo_1534520529391.png');
+INSERT INTO `b_products_images` (`pro_image_id`, `product_id`, `filename`) VALUES
+(19, 21, 'uploads/My Info Card Phone_email_github.png'),
+(20, 22, 'uploads/MY Card (Phone_Mail).png');
 
 -- --------------------------------------------------------
 
@@ -183,8 +186,8 @@ CREATE TABLE `seller_profile` (
 --
 
 INSERT INTO `seller_profile` (`sp_id`, `s_id`, `username`, `works`, `current_address`, `parmanent_address`, `birthday`, `language`, `email`) VALUES
-(1, 49, 'barua', '', '', '', '0000-00-00 00:00:00.000000', '0', ''),
-(2, 51, 'himel123', '', '', '', '0000-00-00 00:00:00.000000', '', '');
+(3, 53, 'samanta', '', '', '', '0000-00-00 00:00:00.000000', '', ''),
+(4, 55, 'ashik', '', '', '', '0000-00-00 00:00:00.000000', '', '');
 
 -- --------------------------------------------------------
 
@@ -207,8 +210,55 @@ CREATE TABLE `seller_signup` (
 --
 
 INSERT INTO `seller_signup` (`s_id`, `firstname`, `lastname`, `username`, `phone`, `password`, `reg_time`) VALUES
-(49, 'Eshan', 'Barua', 'barua', '0183', 'null', '2019-11-15 22:22:51'),
-(51, 'Hafizur', 'Rahman', 'himel123', '123', '12', '2019-11-15 23:49:47');
+(53, 'Samanta', 'Afrin', 'samanta', '3939939', 'null', '2019-12-10 23:53:47'),
+(55, 'Ashikur', 'Rahman', 'ashik', '99993', 'ashik', '2019-12-10 23:54:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sell_products_demand`
+--
+
+CREATE TABLE `sell_products_demand` (
+  `s_product_id` int(20) NOT NULL,
+  `seller_username` varchar(25) NOT NULL,
+  `seller_name` varchar(25) NOT NULL,
+  `seller_email` varchar(25) NOT NULL,
+  `seller_phone` varchar(25) NOT NULL,
+  `category` varchar(15) NOT NULL,
+  `type` varchar(15) NOT NULL,
+  `product_name` varchar(25) NOT NULL,
+  `estimated_price` double(10,2) NOT NULL,
+  `quantity` varchar(10) NOT NULL,
+  `product_details` varchar(30) NOT NULL,
+  `product_status` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sell_products_demand`
+--
+
+INSERT INTO `sell_products_demand` (`s_product_id`, `seller_username`, `seller_name`, `seller_email`, `seller_phone`, `category`, `type`, `product_name`, `estimated_price`, `quantity`, `product_details`, `product_status`) VALUES
+(0, 'samanta', 'Samanta Afrin', 'samanta@gmail.com', '0196555', 'Real State', 'Regular', 'Servo Motor', 450.56, '1', 'Servo 78', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `s_products_images`
+--
+
+CREATE TABLE `s_products_images` (
+  `pro_image_id` int(20) NOT NULL,
+  `product_id` int(20) NOT NULL,
+  `filename` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `s_products_images`
+--
+
+INSERT INTO `s_products_images` (`pro_image_id`, `product_id`, `filename`) VALUES
+(0, 0, 'uploads/MY Card (Phone_Mail).png');
 
 --
 -- Indexes for dumped tables
@@ -251,8 +301,8 @@ ALTER TABLE `buy_products_demand`
 -- Indexes for table `b_products_images`
 --
 ALTER TABLE `b_products_images`
-  ADD PRIMARY KEY (`b_pro_image_id`),
-  ADD UNIQUE KEY `b_pro_image_id` (`b_pro_image_id`);
+  ADD PRIMARY KEY (`pro_image_id`),
+  ADD UNIQUE KEY `b_pro_image_id` (`pro_image_id`);
 
 --
 -- Indexes for table `contact_us`
@@ -290,43 +340,43 @@ ALTER TABLE `admin_signup`
 -- AUTO_INCREMENT for table `buyer_profile`
 --
 ALTER TABLE `buyer_profile`
-  MODIFY `bp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `bp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `buyer_signup`
 --
 ALTER TABLE `buyer_signup`
-  MODIFY `b_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `b_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `buy_products_demand`
 --
 ALTER TABLE `buy_products_demand`
-  MODIFY `b_product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `b_product_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `b_products_images`
 --
 ALTER TABLE `b_products_images`
-  MODIFY `b_pro_image_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `pro_image_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `contact_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `contact_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `seller_profile`
 --
 ALTER TABLE `seller_profile`
-  MODIFY `sp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sp_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `seller_signup`
 --
 ALTER TABLE `seller_signup`
-  MODIFY `s_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `s_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
